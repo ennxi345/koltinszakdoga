@@ -20,6 +20,7 @@ import { KotlinsterEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         KotlinsterCoreModule,
         KotlinsterHomeModule,
         KotlinsterAccountModule,
-        KotlinsterEntityModule
+        KotlinsterEntityModule,
+        BrowserAnimationsModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],

@@ -10,6 +10,10 @@ import { HeadquarterComponent } from 'app/entities/headquarter/headquarter.compo
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HeadquarterModalComponent } from 'app/entities/headquarter/headquarter-modal.component';
 import { BsModalService, ComponentLoaderFactory, ModalModule, PositioningService } from 'ngx-bootstrap';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 const ENTITY_STATES = [...entityRoute];
 
@@ -21,11 +25,14 @@ const ENTITY_STATES = [...entityRoute];
         HttpClientModule,
         CommonModule,
         NgSelectModule,
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
+        TranslateModule
     ],
     declarations: [VehicleComponent, HeadquarterComponent, HeadquarterModalComponent],
     entryComponents: [HeadquarterModalComponent],
-    providers: [EntityService, BsModalService, ComponentLoaderFactory, PositioningService],
+    providers: [EntityService, BsModalService, ComponentLoaderFactory, PositioningService, ToastrService, TranslateService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class KotlinsterEntityModule {}

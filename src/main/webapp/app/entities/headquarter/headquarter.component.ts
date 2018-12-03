@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager, JhiTranslateComponent } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { Headquarter } from 'app/entities/headquarter/headquarter.model';
 import { County } from 'app/entities/county/county.model';
@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { HeadquarterModalComponent } from 'app/entities/headquarter/headquarter-modal.component';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { faAlignRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'jhi-headquarter',
@@ -26,6 +28,7 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
         private router: Router,
         private entityService: EntityService,
         private modalService: BsModalService,
+        protected toasterService: ToastrService,
         protected eventManager: JhiEventManager
     ) {
         this.headquarter = new Headquarter();
@@ -66,9 +69,9 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
         this.entityService.delete(id, this.url).subscribe(response =>
             this.eventManager.broadcast({
                 name: 'HeadquarterList-modification',
-                content: 'Deleted headquarte'
+                content: 'Deleted headquarters'
             })
         );
-        this.alertService.error('Sikeres törlés', true);
+        this.toasterService.success('Sikeres mentés', null);
     }
 }
