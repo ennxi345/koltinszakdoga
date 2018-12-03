@@ -1,0 +1,58 @@
+<div class="modal-lg">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="form-control-label"> Megyék</label>
+            <ng-select
+                [items]="countyList"
+                bindLabel="countyName"
+                bindValue="id"
+                [multiple]="false"
+                [closeOnSelect]="true"
+                [hideSelected]="true"
+                [(ngModel)]="headquarter.countyId">
+            </ng-select>
+        </div>
+        <label class="form-control-label col-lg-5" for="settlement">Település</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="settlement" name="settlement"
+                   [(ngModel)]="headquarter.settlement"/>
+        </div>
+        <label class="form-control-label col-lg-5" for="zipCode">Irányítószám</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="zipCode" name="zipCode"
+                   [(ngModel)]="headquarter.zipCode"/>
+        </div>
+        <label class="form-control-label col-lg-5" for="address">Cím</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="address" name="address"
+                   [(ngModel)]="headquarter.address"/>
+        </div>
+        <label class="form-control-label col-lg-5" for="phoneNumber">Telefon szám</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                   [(ngModel)]="headquarter.phoneNumber"/>
+        </div>
+        <label class="form-control-label col-lg-5" for="email">Email cím</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="email" name="email"
+                   [(ngModel)]="headquarter.email"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+            <span class="fa fa-ban">Cancel</span>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="save()">
+            <span class="fa fa-save">Save</span>
+        </button>
+    </div>
+</div>
+<jhi-alert></jhi-alert>
+<jhi-alert-error></jhi-alert-error>

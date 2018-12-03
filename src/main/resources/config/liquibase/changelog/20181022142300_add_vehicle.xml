@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20181022142300" author="ciprian">
+    <createTable tableName="vehicle">
+        <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="licenseNumber" type="bigint">
+        </column>
+        <column name="age" type="bigint"/>
+        <column name="brand" type="varchar(50)"/>
+        <column name="owner" type="varchar(100)"/>
+    </createTable>
+    </changeSet>
+</databaseChangeLog>

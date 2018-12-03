@@ -1,0 +1,80 @@
+<div class="row">
+    <button type="button" class="btn btn-primary" (click)="openConfirmDialog()">Új székhely</button>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <table class="table table-striped table-bordered w-100"
+                   *ngIf="headquarterList && headquarterList?.length > 0">
+                <thead>
+                <th>
+                    <span> County </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th>
+                    <span> Settlement </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th>
+                    <span> Zip Code </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th>
+                    <span> Address </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th>
+                    <span> Phone number </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th>
+                    <span> Email </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th></th>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let szekhely of headquarterList; trackBy: trackByFn">
+                    <td>
+                        {{findCounty(szekhely.countyId).countyName}}
+                    </td>
+                    <td>
+                        {{szekhely.settlement}}
+                    </td>
+                    <td>
+                        {{szekhely.zipCode}}
+                    </td>
+                    <td>
+                        {{szekhely.address}}
+                    </td>
+                    <td>
+                        {{szekhely.phoneNumber}}
+                    </td>
+                    <td>
+                        {{szekhely.email}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container ">
+                            <button class="btn btn-sm" type="button"
+                                    (click)="onEdit(szekhely)">
+                                <span class="fa fa-eye"></span>
+                                <span>Edit</span>
+                            </button>
+                            <button class="btn btn-danger btn-sm" type="button"
+                                    (click)="onDelete(szekhely.id)">
+                                <span class="fa fa-remove">&nbsp;</span>
+                                <span>Törlés</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+
+</div>
