@@ -72,6 +72,6 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
                 content: 'Deleted headquarters'
             })
         );
-        this.toasterService.success('Sikeres mentés', null);
+        this.toasterService.success('Sikeres törlés', null);
     }
 }
