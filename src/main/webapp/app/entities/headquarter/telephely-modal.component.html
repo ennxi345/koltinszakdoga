@@ -11,39 +11,38 @@
         <div class="form-group">
             <label class="form-control-label"> Megyék</label>
             <ng-select
-                [items]="countyList"
-                bindLabel="countyName"
-                bindValue="id"
+                [items]="megyeList"
+                bindLabel="megyeNev"
                 [multiple]="false"
                 [closeOnSelect]="true"
                 [hideSelected]="true"
-                [(ngModel)]="headquarter.countyId">
+                [(ngModel)]="telephely.megye">
             </ng-select>
         </div>
         <label class="form-control-label col-lg-5" for="settlement">Település</label>
         <div class="form-group">
             <input type="text" class="form-control" id="settlement" name="settlement"
-                   [(ngModel)]="headquarter.settlement"/>
+                   [(ngModel)]="telephely.telepules"/>
         </div>
         <label class="form-control-label col-lg-5" for="zipCode">Irányítószám</label>
         <div class="form-group">
             <input type="text" class="form-control" id="zipCode" name="zipCode"
-                   [(ngModel)]="headquarter.zipCode"/>
+                   [(ngModel)]="telephely.iranyitoSzam"/>
         </div>
         <label class="form-control-label col-lg-5" for="address">Cím</label>
         <div class="form-group">
             <input type="text" class="form-control" id="address" name="address"
-                   [(ngModel)]="headquarter.address"/>
+                   [(ngModel)]="telephely.address"/>
         </div>
         <label class="form-control-label col-lg-5" for="phoneNumber">Telefon szám</label>
         <div class="form-group">
             <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                   [(ngModel)]="headquarter.phoneNumber"/>
+                   [(ngModel)]="telephely.telefonSzam"/>
         </div>
         <label class="form-control-label col-lg-5" for="email">Email cím</label>
         <div class="form-group">
             <input type="text" class="form-control" id="email" name="email"
-                   [(ngModel)]="headquarter.email"/>
+                   [(ngModel)]="telephely.email"/>
         </div>
     </div>
     <div class="modal-footer">

@@ -4,6 +4,9 @@ Imports
 
 @import '~@ng-select/ng-select/themes/default.theme.css';
 @import './toastr.css';
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 /* ==============================================================
 Bootstrap tweaks
@@ -111,55 +114,6 @@ a:hover {
 }
 
 /* ==========================================================================
-Custom alerts for notification
-========================================================================== */
-.alerts .alert {
-    position: fixed;
-    right: 20px !important ;
-    top: 20px !important ;
-    text-overflow: ellipsis;
-}
-.alert pre {
-    background: none;
-    border: none;
-    font: inherit;
-    color: inherit;
-    padding: 0;
-    margin: 0;
-}
-
-.alert .popover pre {
-    font-size: 10px;
-}
-
-.alerts .toast {
-    position: fixed;
-    width: 100%;
-}
-
-.alerts .toast.left {
-    left: 5px;
-}
-
-.alerts .toast.right {
-    right: 5px;
-}
-
-.alerts .toast.top {
-    top: 55px;
-}
-
-.alerts .toast.bottom {
-    bottom: 55px;
-}
-
-@media screen and (min-width: 480px) {
-    .alerts .toast {
-        width: 50%;
-    }
-}
-
-/* ==========================================================================
 entity tables helpers
 ========================================================================== */
 /* Remove Bootstrap padding from the element
@@ -251,4 +205,8 @@ ui bootstrap tweaks
 
 .ng-select {
     border: 4px;
+}
+
+.ngx-datatable {
+    border: #030303;
 }

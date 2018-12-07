@@ -1,13 +1,37 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-import { KotlinsterSharedLibsModule, KotlinsterSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
+import { HasAnyAuthorityDirective, JhiLoginModalComponent, KotlinsterSharedCommonModule, KotlinsterSharedLibsModule } from './';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BsModalService, ComponentLoaderFactory, ModalModule, PositioningService } from 'ngx-bootstrap';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @NgModule({
-    imports: [KotlinsterSharedLibsModule, KotlinsterSharedCommonModule],
+    imports: [
+        KotlinsterSharedLibsModule,
+        KotlinsterSharedCommonModule,
+        FormsModule,
+        HttpClientModule,
+        CommonModule,
+        ModalModule.forRoot(),
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
+        TranslateModule
+    ],
     declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
-    providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
+    providers: [
+        { provide: NgbDateAdapter, useClass: NgbDateMomentAdapter },
+        BsModalService,
+        ComponentLoaderFactory,
+        PositioningService,
+        ToastrService,
+        TranslateService
+    ],
     entryComponents: [JhiLoginModalComponent],
     exports: [KotlinsterSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

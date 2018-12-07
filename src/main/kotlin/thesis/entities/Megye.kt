@@ -4,14 +4,14 @@ import javax.persistence.*
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "county")
-data class County(
+@Table(name = "megye")
+data class Megye(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     var id: Long?,
-    @Column(name = "county_name", length = 50)
-    var countyName: String?) {
+    @Column(name = "megye_nev", length = 50)
+    var megyeNev: String?) {
 
 
     constructor() : this(null, null)

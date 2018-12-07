@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JhiAlertService } from 'ng-jhipster';
 import { Vehicle } from 'app/entities/vehicle/vehicle.model';
 import { EntityService } from '../../../entity.service';
-import { County } from 'app/entities/county/county.model';
+import { Megye } from 'app/entities/county/megye.model';
 
 @Component({
     selector: 'jhi-vehicle',

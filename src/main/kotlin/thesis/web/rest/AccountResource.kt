@@ -138,7 +138,7 @@ class AccountResource(private val userRepository: UserRepository,
      * POST   /account/reset-password/init : Send an email to reset the password of the user
      *
      * @param mail the mail of the user
-     * @throws EmailNotFoundException 400 (Bad Request) if the email address is not registered
+     * @throws EmailNotFoundException 400 (Bad Request) if the email cim is not registered
      */
     @PostMapping(path = arrayOf("/account/reset-password/init"))
     @Timed

@@ -1,0 +1,14 @@
+<div class="row">
+    <button type="button" class="btn btn-primary" (click)="openConfirmDialog()">Új székhely</button>
+</div>
+
+<div class="row">
+    <div>
+        <div class="row">
+            <ngx-datatable class="material fullscreen"
+                           [rows]="telephelyList"
+                           [columns]="columns">
+            </ngx-datatable>
+        </div>
+    </div>
+</div>

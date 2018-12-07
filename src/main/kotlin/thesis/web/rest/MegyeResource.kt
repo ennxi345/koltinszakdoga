@@ -1,26 +1,24 @@
 package thesis.web.rest
 
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import thesis.constants.Constant
-import thesis.service.CountyService
-import thesis.service.dto.CountyDTO
+import thesis.service.MegyeService
+import thesis.service.dto.MegyeDTO
 
 @RestController
 @RequestMapping(Constant.API_BASE_URL)
-class CountyResource(val countyService: CountyService) {
+class MegyeResource(val megyeService: MegyeService) {
 
 
     companion object {
-        const val ENTITY_URL: String = "/county"
+        const val ENTITY_URL: String = "/megye"
     }
 
     @GetMapping(ENTITY_URL + "/all")
-    fun getAll(): ResponseEntity<List<CountyDTO>> {
-        return ResponseEntity.ok(countyService.getAll()) ;
+    fun getAll(): ResponseEntity<List<MegyeDTO>> {
+        return ResponseEntity.ok(megyeService.getAll()) ;
     }
 }

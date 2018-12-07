@@ -3,23 +3,23 @@ package thesis.entities
 import javax.persistence.*
 
 @Entity
-@Table(name = "headquarter")
-data class Headquarter(
+@Table(name = "telephely")
+data class Telephely(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     var id: Long?,
-    @JoinColumn(name ="county_id")
+    @JoinColumn(name ="megye_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    var county: County?,
-    @Column(name = "settlement", length = 100)
-    var settlement: String?,
-    @Column(name = "zip_code",length = 20)
-    var zipCode: String?,
-    @Column(name = "address",length = 200)
-    var address: String?,
-    @Column(name = "phone_number",length = 50)
-    var phoneNumber: String?,
+    var megye: Megye?,
+    @Column(name = "telepules", length = 100)
+    var telepules: String?,
+    @Column(name = "iranyitoszam")
+    var iranyitoSzam: Int?,
+    @Column(name = "cim",length = 200)
+    var cim: String?,
+    @Column(name = "telefonszam",length = 50)
+    var telefonszam: String?,
     @Column(name = "email",length = 100)
     var email: String?) {
 

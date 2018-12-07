@@ -1,9 +1,6 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
-import { HeadquarterComponent } from 'app/entities/headquarter/headquarter.component';
-import { HeadquarterModalComponent } from 'app/entities/headquarter/headquarter-modal.component';
-import { JhiPaginationUtil } from 'ng-jhipster';
-import { Injectable } from '@angular/core';
+import { TelephelyComponent } from 'app/entities/headquarter/telephely.component';
 
 export const entityRoute: Routes = [
     {
@@ -11,7 +8,7 @@ export const entityRoute: Routes = [
         component: VehicleComponent
     },
     {
-        path: 'headquarter',
-        component: HeadquarterComponent
+        path: 'telephely',
+        component: TelephelyComponent
     }
 ];

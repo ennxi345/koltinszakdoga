@@ -1,27 +1,29 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { JhiAlertService, JhiEventManager, JhiTranslateComponent } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
-import { Headquarter } from 'app/entities/headquarter/headquarter.model';
-import { County } from 'app/entities/county/county.model';
+import { Telephely } from 'app/entities/headquarter/telephely.model';
+import { Megye } from 'app/entities/county/megye.model';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { HeadquarterModalComponent } from 'app/entities/headquarter/headquarter-modal.component';
+import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-modal.component';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { faAlignRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-    selector: 'jhi-headquarter',
-    templateUrl: './headquarter.component.html'
+    selector: 'telephely',
+    templateUrl: './telephely.component.html'
 })
-export class HeadquarterComponent implements OnInit, OnDestroy {
-    headquarter: Headquarter;
-    headquarterList: Headquarter[];
-    countyList: County[];
-    county: County;
-    url = 'api/headquarter';
+export class TelephelyComponent implements OnInit, OnDestroy {
+    telephely: Telephely;
+    telephelyList: Telephely[];
+    megyeList: Megye[];
+    megye: Megye;
+    url = 'api/telephely';
     modalRef: BsModalRef;
     eventSubscriber: Subscription;
+
+    columns = [{ prop: 'megye.megyeNev', name: 'megye' }, { name: 'address' }, { name: 'email' }, { name: 'telepules' }];
 
     constructor(
         private alertService: JhiAlertService,
@@ -31,8 +33,8 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
         protected toasterService: ToastrService,
         protected eventManager: JhiEventManager
     ) {
-        this.headquarter = new Headquarter();
-        this.county = new County();
+        this.telephely = new Telephely();
+        this.megye = new Megye();
     }
 
     ngOnInit() {
@@ -41,8 +43,8 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.entityService.getAll('api/county').subscribe(counties => (this.countyList = counties as County[]));
-        this.entityService.getAll(this.url).subscribe(headquarters => (this.headquarterList = headquarters as Headquarter[]));
+        this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties as Megye[]));
+        this.entityService.getAll(this.url).subscribe(headquarters => (this.telephelyList = headquarters as Telephely[]));
     }
 
     public trackByFn(index, item) {
@@ -52,17 +54,17 @@ export class HeadquarterComponent implements OnInit, OnDestroy {
     ngOnDestroy() {}
 
     findCounty(countyId: number) {
-        return this.countyList.find(x => x.id === countyId);
+        return this.megyeList.find(x => x.id === countyId);
     }
 
-    onEdit(headquarter: Headquarter) {
+    onEdit(headquarter: Telephely) {
         const copy = Object.assign({}, headquarter);
-        const modal = this.modalService.show(HeadquarterModalComponent);
-        (<HeadquarterModalComponent>modal.content).openConfirmDialog(copy);
+        const modal = this.modalService.show(TelephelyModalComponent);
+        (<TelephelyModalComponent>modal.content).openConfirmDialog(copy);
     }
 
     openConfirmDialog() {
-        this.modalRef = this.modalService.show(HeadquarterModalComponent);
+        this.modalRef = this.modalService.show(TelephelyModalComponent);
     }
 
     onDelete(id: number) {

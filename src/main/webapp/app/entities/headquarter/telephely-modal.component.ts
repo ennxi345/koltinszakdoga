@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Headquarter } from 'app/entities/headquarter/headquarter.model';
-import { County } from 'app/entities/county/county.model';
+import { Telephely } from 'app/entities/headquarter/telephely.model';
+import { Megye } from 'app/entities/county/megye.model';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,14 +8,14 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { entityRoute } from 'app/entities/entity.route';
 
 @Component({
-    selector: 'jhi-dialog-headquarter',
-    templateUrl: './headquarter-modal.component.html'
+    selector: 'jhi-dialog-telephely',
+    templateUrl: './telephely-modal.component.html'
 })
-export class HeadquarterModalComponent implements OnInit, OnDestroy {
-    headquarter: Headquarter;
-    countyList: County[];
-    county: County;
-    url = 'api/headquarter';
+export class TelephelyModalComponent implements OnInit, OnDestroy {
+    telephely: Telephely;
+    megyeList: Megye[];
+    megye: Megye;
+    url = 'api/telephely';
 
     constructor(
         private alertService: JhiAlertService,
@@ -24,32 +24,32 @@ export class HeadquarterModalComponent implements OnInit, OnDestroy {
         private modalRef: BsModalRef,
         protected eventManager: JhiEventManager
     ) {
-        this.county = new County();
-        this.headquarter = new Headquarter();
+        this.megye = new Megye();
+        this.telephely = new Telephely();
     }
 
     ngOnDestroy(): void {}
 
     ngOnInit(): void {
-        this.entityService.getAll('api/county').subscribe(counties => (this.countyList = counties as County[]));
+        this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties as Megye[]));
     }
 
     save() {
-        if (!this.headquarter.id) {
+        if (!this.telephely.id) {
             this.entityService
-                .create(this.headquarter, this.url)
+                .create(this.telephely, this.url)
                 .subscribe(response => this.onSaveSuccess(response), response => this.onSaveError(response));
         } else {
             this.entityService
-                .update(this.headquarter, this.url)
+                .update(this.telephely, this.url)
                 .subscribe(response => this.onSaveSuccess(response), response => this.onSaveError(response));
         }
     }
 
-    public openConfirmDialog(entity: Headquarter): void {
+    public openConfirmDialog(entity: Telephely): void {
         if (entity) {
-            this.headquarter = entity;
-            console.log(this.headquarter);
+            this.telephely = entity;
+            console.log(this.telephely);
         }
     }
 

@@ -370,7 +370,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(duplicatedUser)))
             .andExpect(status().is4xxClientError());
 
-        // Duplicate email - with uppercase email address
+        // Duplicate email - with uppercase email cim
         ManagedUserVM userWithUpperCaseEmail = new ManagedUserVM();
         userWithUpperCaseEmail.setId(validUser.getId());
         userWithUpperCaseEmail.setLogin("johnjr");

@@ -4,24 +4,24 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet id="20181119232400" author="ciprian">
-        <createTable tableName="headquarter">
+        <createTable tableName="telephely">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="county_id" type="bigint">
+            <column name="megye_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="settlement" type="varchar(100)"></column>
-            <column name="zip_code" type="varchar(20)"></column>
-            <column name="address" type="varchar(200)"></column>
-            <column name="phone_number" type="varchar(50)"></column>
+            <column name="telepules" type="varchar(100)"></column>
+            <column name="iranyitoszam" type="smallint"></column>
+            <column name="cim" type="varchar(200)"></column>
+            <column name="telefonszam" type="varchar(50)"></column>
             <column name="email" type="varchar(100)"></column>
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="county_id"
-                                 baseTableName="headquarter"
-                                 constraintName="fk_head_county_id"
+        <addForeignKeyConstraint baseColumnNames="megye_id"
+                                 baseTableName="telephely"
+                                 constraintName="fk_head_megye_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="county"/>
+                                 referencedTableName="megye"/>
     </changeSet>
 </databaseChangeLog>

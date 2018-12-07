@@ -44,7 +44,7 @@ class KotlinsterApp(private val env: Environment) {
         * Main method, used to run the application.
         *
         * @param args the command line arguments
-        * @throws UnknownHostException if the local host name could not be resolved into an address
+        * @throws UnknownHostException if the local host name could not be resolved into an cim
         */
         @Throws(UnknownHostException::class)
         @JvmStatic

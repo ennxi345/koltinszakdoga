@@ -34,6 +34,12 @@
     "@angular-devkit/core" "0.7.2"
     rxjs "^6.0.0"
 
+"@angular/animations@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.1.tgz#8fecbd19417364946a9ea40c8fdf32462110232f"
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular/cli@6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-6.1.2.tgz#febc2635173ff7d6e3dc6744b4df49459e6f13d6"
@@ -169,6 +175,12 @@
   dependencies:
     tslib "^1.9.0"
 
+"@ngx-translate/core@^11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-11.0.1.tgz#cecefad41f06368f5859dac48fec8fcc4485615f"
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngx-translate/http-loader@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-3.0.1.tgz#20b0f98bc6c25321129d3e3302ab3cc489c0a42a"
@@ -201,6 +213,10 @@
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
+
+"@swimlane/ngx-datatable@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-14.0.0.tgz#6227625e2ce2e9143735d4deeb3ab34b88745c26"
 
 "@types/jest@22.2.3", "@types/jest@^22.1.3":
   version "22.2.3"
@@ -6436,6 +6452,12 @@ ngx-cookie@2.0.1:
 ngx-infinite-scroll@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.5.1.tgz#dd9452c602ff7c3222f0ca168481aa14140286b7"
+
+ngx-toastr@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-9.1.1.tgz#c7ec0284d13951422ccf47439a387372ddccc768"
+  dependencies:
+    tslib "^1.9.0"
 
 ngx-webstorage@2.0.1:
   version "2.0.1"

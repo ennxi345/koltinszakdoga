@@ -1,6 +1,6 @@
 package thesis.service.dto
 
-data class CountyDTO(var id: Long?, var countyName: String?) {
+data class MegyeDTO(var id: Long?, var megyeNev: String?) {
 
     constructor() : this(null, null)
 }
