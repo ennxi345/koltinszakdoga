@@ -1,6 +1,9 @@
 package thesis.service.dto
 
-data class TelephelyDTO(var id: Long?, var megye: MegyeDTO?, var telepules: String?, var iranyitoSzam: String?, var cim: String?, var telefonSzam: String?, var email: String?)  {
+import java.time.LocalDate
 
-    constructor() : this(null, null, null, null, null, null, null)
+data class TelephelyDTO(var id: Long?, var megye: MegyeDTO?, var telepules: String?, var iranyitoSzam: String?, var cim: String?, var telefonSzam: String?, var email: String?,
+                        var fax: String?, var mukodesKezdete: LocalDate? )  {
+
+    constructor() : this(null, null, null, null, null, null, null, null, null)
 }

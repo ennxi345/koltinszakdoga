@@ -7,8 +7,18 @@
         <div class="row">
             <ngx-datatable class="material fullscreen"
                            [rows]="telephelyList"
+                           [selectionType]="single"
+                           [columnMode]="force"
+                           [selected]="telephely"
+                           [headerHeight]="50"
+                           [footerHeight]="50"
+                           [rowHeight]="'auto'"
+                            (select)="onSelect($event)"
+                           [limit]="5"
+                           (activate)="onActivate($event)"
                            [columns]="columns">
             </ngx-datatable>
+            <button type="button" class="btn btn-primary" (click)="onEdit(telephely)">Új székhely</button>
         </div>
     </div>
 </div>

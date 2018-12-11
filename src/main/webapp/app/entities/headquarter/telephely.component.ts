@@ -57,10 +57,20 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         return this.megyeList.find(x => x.id === countyId);
     }
 
-    onEdit(headquarter: Telephely) {
-        const copy = Object.assign({}, headquarter);
+    onEdit(telephely: Telephely) {
+        console.log(telephely);
+        const copy = Object.assign({}, telephely);
         const modal = this.modalService.show(TelephelyModalComponent);
         (<TelephelyModalComponent>modal.content).openConfirmDialog(copy);
+    }
+
+    onActivate(event) {
+        console.log(event);
+    }
+
+    onSelect(selected) {
+        this.telephely = selected;
+        console.log(selected);
     }
 
     openConfirmDialog() {

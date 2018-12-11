@@ -1,5 +1,6 @@
 package thesis.entities
 
+import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
@@ -21,8 +22,13 @@ data class Telephely(
     @Column(name = "telefonszam",length = 50)
     var telefonszam: String?,
     @Column(name = "email",length = 100)
-    var email: String?) {
+    var email: String?,
+    @Column(name = "fax", length = 100)
+    var fax: String?,
+    @Column(name = "mukodes_kezdete")
+    var mukodesKezdete: LocalDate?
+    ){
 
-    constructor() : this(null, null, null, null, null, null, null)
+    constructor() : this(null, null, null, null, null, null, null,null,null)
 
 }

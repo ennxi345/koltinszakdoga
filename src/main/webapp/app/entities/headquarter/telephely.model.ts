@@ -8,6 +8,8 @@ export class Telephely {
         public iranyitoSzam?: string,
         public cim?: string,
         public telefonSzam?: string,
-        public email?: string
+        public email?: string,
+        public fax?: string,
+        public mukodesKezdete?: Date
     ) {}
 }

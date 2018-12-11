@@ -3,7 +3,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet id="20181119232400" author="ciprian">
+    <changeSet id="20181211004000" author="ciprian">
         <createTable tableName="telephely">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -16,6 +16,8 @@
             <column name="cim" type="varchar(200)"></column>
             <column name="telefonszam" type="varchar(50)"></column>
             <column name="email" type="varchar(100)"></column>
+            <column name="fax" type="varchar(100)"></column>
+            <column name="mukodes_kezdete" type="date"></column>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="megye_id"
