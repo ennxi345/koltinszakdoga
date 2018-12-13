@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*
 import thesis.constants.Constant
 import thesis.service.TelephelyService
 import thesis.service.dto.TelephelyDTO
+import thesis.service.criteria.TelephelyCriteria
 import java.net.URI
 
 
@@ -38,6 +39,11 @@ class TelephelyResource(val service: TelephelyService) {
     fun getAll(): ResponseEntity<List<TelephelyDTO>> {
         return ResponseEntity.ok(service.getAll()) ;
     }
+
+/*    @GetMapping(ENTITY_URL + "/all")
+    fun getAllTelephely(criteria: TelephelyCriteria): ResponseEntity<List<TelephelyDTO>> {
+        return ResponseEntity.ok(service.getAll()) ;
+    }*/
 
     @GetMapping(ENTITY_URL + "/{id}")
     fun getById(@PathVariable("id") id: Long): ResponseEntity<TelephelyDTO> {

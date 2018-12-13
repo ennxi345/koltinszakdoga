@@ -10,6 +10,8 @@ data class Telephely(
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     var id: Long?,
+    @Column(name = "nev", length = 100)
+    var nev: String?,
     @JoinColumn(name ="megye_id")
     @ManyToOne(fetch = FetchType.LAZY)
     var megye: Megye?,
@@ -29,6 +31,6 @@ data class Telephely(
     var mukodesKezdete: LocalDate?
     ){
 
-    constructor() : this(null, null, null, null, null, null, null,null,null)
+    constructor() : this(null, null, null, null, null, null, null,null,null,null)
 
 }

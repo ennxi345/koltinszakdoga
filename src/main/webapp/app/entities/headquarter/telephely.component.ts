@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { JhiAlertService, JhiEventManager, JhiTranslateComponent } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { Telephely } from 'app/entities/headquarter/telephely.model';
@@ -20,18 +20,11 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     telephelyList: Telephely[];
     megyeList: Megye[];
     megye: Megye;
+    columns = [];
     url = 'api/telephely';
     modalRef: BsModalRef;
     eventSubscriber: Subscription;
-
-    columns = [
-        { prop: 'megye.megyeNev', name: 'megye' },
-        { name: 'telepules' },
-        { name: 'cim' },
-        { name: 'email' },
-        { name: 'telefonSzam' },
-        { name: 'fax' }
-    ];
+    @ViewChild('buttonTemplates') public buttonTemplates: TemplateRef<any>;
 
     constructor(
         private alertService: JhiAlertService,
@@ -48,6 +41,17 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.loadAll();
         this.eventSubscriber = this.eventManager.subscribe('HeadquarterList-modification', response => this.loadAll());
+        this.columns = [
+            { prop: 'nev', name: 'Név' },
+            { prop: 'megye.megyeNev', name: 'Megye' },
+            { prop: 'telepules', name: 'Település' },
+            { prop: 'cim', name: 'Cím' },
+            { prop: 'email', name: 'Email' },
+            { prop: 'telefonszam', name: 'Telefonszám' },
+            { prop: 'fax', name: 'Fax' },
+            { prop: 'mukodesKezdete', name: 'Működés kezdete' },
+            { cellTemplate: this.buttonTemplates }
+        ];
     }
 
     loadAll() {
@@ -65,8 +69,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         return this.megyeList.find(x => x.id === countyId);
     }
 
-    onEdit() {
-        const copy = Object.assign({}, this.selected[0]);
+    onEdit(row: Telephely) {
+        const copy = Object.assign({}, row);
         const modal = this.modalService.show(TelephelyModalComponent);
         (<TelephelyModalComponent>modal.content).openConfirmDialog(copy);
     }
@@ -81,8 +85,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         this.modalRef = this.modalService.show(TelephelyModalComponent);
     }
 
-    onDelete(id: number) {
-        this.entityService.delete(id, this.url).subscribe(response =>
+    onDelete(row: Telephely) {
+        this.entityService.delete(row.id, this.url).subscribe(response =>
             this.eventManager.broadcast({
                 name: 'HeadquarterList-modification',
                 content: 'Deleted headquarters'

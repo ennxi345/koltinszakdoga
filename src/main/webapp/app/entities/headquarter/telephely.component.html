@@ -5,14 +5,22 @@
 <div class="table-wrapper">
             <ngx-datatable class="material"
                            [rows]="telephelyList"
-                           [selectionType]="'single'"
                            [columnMode]="'force'"
-                           [selected]="selected"
-                            (select)="onSelect($event)"
                            [rowHeight]="auto"
                            [limit]="20"
-                           (activate)="onActivate($event)"
+                           [headerHeight]="50"
+                           [footerHeight]="50"
                            [columns]="columns">
+                <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
+                    <a class="cursor-pointer"
+                       (click)="onEdit(row)">
+                        <span class="fa fa-edit fa-2x "></span>
+                    </a>
+                    <a class="cursor-pointer"
+                       (click)="onDelete(row)">
+                        <span class="fa fa-trash fa-2x "></span>
+                    </a>
+                </ng-template>
             </ngx-datatable>
 </div>
-    <button type="button" class="btn btn-primary" (click)="onEdit()">Új székhely</button>
+
