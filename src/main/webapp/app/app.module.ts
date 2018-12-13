@@ -33,8 +33,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         KotlinsterHomeModule,
         KotlinsterAccountModule,
         KotlinsterEntityModule,
-        BrowserAnimationsModule,
-        NgxDatatableModule
+        BrowserAnimationsModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],

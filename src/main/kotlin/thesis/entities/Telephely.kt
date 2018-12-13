@@ -20,7 +20,7 @@ data class Telephely(
     @Column(name = "cim",length = 200)
     var cim: String?,
     @Column(name = "telefonszam",length = 50)
-    var telefonszam: String?,
+    var telefonSzam: String?,
     @Column(name = "email",length = 100)
     var email: String?,
     @Column(name = "fax", length = 100)

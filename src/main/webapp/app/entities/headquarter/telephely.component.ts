@@ -16,6 +16,7 @@ import { faAlignRight } from '@fortawesome/free-solid-svg-icons';
 })
 export class TelephelyComponent implements OnInit, OnDestroy {
     telephely: Telephely;
+    selected = [];
     telephelyList: Telephely[];
     megyeList: Megye[];
     megye: Megye;
@@ -23,7 +24,14 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     modalRef: BsModalRef;
     eventSubscriber: Subscription;
 
-    columns = [{ prop: 'megye.megyeNev', name: 'megye' }, { name: 'address' }, { name: 'email' }, { name: 'telepules' }];
+    columns = [
+        { prop: 'megye.megyeNev', name: 'megye' },
+        { name: 'telepules' },
+        { name: 'cim' },
+        { name: 'email' },
+        { name: 'telefonSzam' },
+        { name: 'fax' }
+    ];
 
     constructor(
         private alertService: JhiAlertService,
@@ -57,20 +65,16 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         return this.megyeList.find(x => x.id === countyId);
     }
 
-    onEdit(telephely: Telephely) {
-        console.log(telephely);
-        const copy = Object.assign({}, telephely);
+    onEdit() {
+        const copy = Object.assign({}, this.selected[0]);
         const modal = this.modalService.show(TelephelyModalComponent);
         (<TelephelyModalComponent>modal.content).openConfirmDialog(copy);
     }
 
-    onActivate(event) {
-        console.log(event);
-    }
+    onActivate(event) {}
 
-    onSelect(selected) {
-        this.telephely = selected;
-        console.log(selected);
+    onSelect({ event }) {
+        console.log(event, this.selected);
     }
 
     openConfirmDialog() {

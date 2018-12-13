@@ -10,6 +10,8 @@ import { BsModalService, ComponentLoaderFactory, ModalModule, PositioningService
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatTableModule } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
         ModalModule.forRoot(),
         ToastrModule.forRoot(),
         BrowserAnimationsModule,
-        TranslateModule
+        TranslateModule,
+        MatTableModule,
+        NgxDatatableModule
     ],
     declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
     providers: [

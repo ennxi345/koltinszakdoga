@@ -39,7 +39,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     },
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/css/global.css',
+        global: './src/main/webapp/content/scss/global.scss',
         main: './src/main/webapp/app/app.main'
     },
     output: {
@@ -83,13 +83,13 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             exclude: ['node_modules']
         },
         {
-            test: /\.css$/,
-            use: ['to-string-loader', 'css-loader'],
-            exclude: /(vendor\.css|global\.css)/
+            test: /\.scss$/,
+            use: ['to-string-loader', 'css-loader', 'sass-loader'],
+            exclude: /(vendor\.scss|global\.scss)/
         },
         {
-            test: /(vendor\.css|global\.css)/,
-            use: ['style-loader', 'css-loader']
+            test: /(vendor\.scss|global\.scss)/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
         }]
     },
     stats: process.env.DISABLE_WEBPACK_LOGS ? 'none' : options.stats,

@@ -1,57 +1,65 @@
-<div class="modal-lg">
-    <jhi-alert-error></jhi-alert-error>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <div class="modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group">
+                <label class="form-control-label"> Megyék</label>
+                <ng-select
+                    required
+                    [items]="megyeList"
+                    bindLabel="megyeNev"
+                    name="megyeList"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    [(ngModel)]="telephely.megye">
+                </ng-select>
+            </div>
+            <label class="form-control-label col-lg-5" for="telepules">Település</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="telepules" name="telepules"
+                       [(ngModel)]="telephely.telepules"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="iranyitoszam">Irányítószám</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="iranyitoszam" name="iranyitoszam"
+                       [(ngModel)]="telephely.iranyitoSzam"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="cim">Cím</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="cim" name="cim"
+                       [(ngModel)]="telephely.cim"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="telefonszam">Telefon szám</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="telefonszam" name="telefonszam"
+                       [(ngModel)]="telephely.telefonSzam"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="email">Email cím</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="email" name="email"
+                       [(ngModel)]="telephely.email"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="fax" name="fax"
+                       [(ngModel)]="telephely.fax"/>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+                <span class="fa fa-ban">Cancel</span>
+            </button>
+            <button type="submit" name="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">
+                <span class="fa fa-save">Save</span>
+            </button>
+        </div>
+        <jhi-alert></jhi-alert>
     </div>
-    <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
-        <div class="form-group">
-            <label class="form-control-label"> Megyék</label>
-            <ng-select
-                [items]="megyeList"
-                bindLabel="megyeNev"
-                [multiple]="false"
-                [closeOnSelect]="true"
-                [hideSelected]="true"
-                [(ngModel)]="telephely.megye">
-            </ng-select>
-        </div>
-        <label class="form-control-label col-lg-5" for="settlement">Település</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="settlement" name="settlement"
-                   [(ngModel)]="telephely.telepules"/>
-        </div>
-        <label class="form-control-label col-lg-5" for="zipCode">Irányítószám</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="zipCode" name="zipCode"
-                   [(ngModel)]="telephely.iranyitoSzam"/>
-        </div>
-        <label class="form-control-label col-lg-5" for="address">Cím</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="address" name="address"
-                   [(ngModel)]="telephely.address"/>
-        </div>
-        <label class="form-control-label col-lg-5" for="phoneNumber">Telefon szám</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                   [(ngModel)]="telephely.telefonSzam"/>
-        </div>
-        <label class="form-control-label col-lg-5" for="email">Email cím</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="email" name="email"
-                   [(ngModel)]="telephely.email"/>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
-            <span class="fa fa-ban">Cancel</span>
-        </button>
-        <button type="submit" class="btn btn-primary" (click)="save()">
-            <span class="fa fa-save">Save</span>
-        </button>
-    </div>
-    <jhi-alert></jhi-alert>
-</div>
+</form>

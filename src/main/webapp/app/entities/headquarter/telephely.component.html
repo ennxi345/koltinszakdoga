@@ -2,23 +2,17 @@
     <button type="button" class="btn btn-primary" (click)="openConfirmDialog()">Új székhely</button>
 </div>
 
-<div class="row">
-    <div>
-        <div class="row">
-            <ngx-datatable class="material fullscreen"
+<div class="table-wrapper">
+            <ngx-datatable class="material"
                            [rows]="telephelyList"
-                           [selectionType]="single"
-                           [columnMode]="force"
-                           [selected]="telephely"
-                           [headerHeight]="50"
-                           [footerHeight]="50"
-                           [rowHeight]="'auto'"
+                           [selectionType]="'single'"
+                           [columnMode]="'force'"
+                           [selected]="selected"
                             (select)="onSelect($event)"
-                           [limit]="5"
+                           [rowHeight]="auto"
+                           [limit]="20"
                            (activate)="onActivate($event)"
                            [columns]="columns">
             </ngx-datatable>
-            <button type="button" class="btn btn-primary" (click)="onEdit(telephely)">Új székhely</button>
-        </div>
-    </div>
 </div>
+    <button type="button" class="btn btn-primary" (click)="onEdit()">Új székhely</button>

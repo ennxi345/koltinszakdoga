@@ -1,14 +1,10 @@
-/* ==============================================================
-Imports
-===============================================================*/
-
-@import '~@ng-select/ng-select/themes/default.theme.css';
-@import './toastr.css';
-@import '~@swimlane/ngx-datatable/release/index.css';
+@import 'variables.scss';
+@import 'toastr.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
-/* ==============================================================
+/* =================    =============================================
 Bootstrap tweaks
 ===============================================================*/
 

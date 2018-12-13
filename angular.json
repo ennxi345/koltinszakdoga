@@ -1,39 +1,41 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "kotlinster": {
-      "root": "",
-      "sourceRoot": "src/main/webapp",
-      "projectType": "application",
-      "architect": {}
-    }
-  },
-  "defaultProject": "kotlinster",
-  "cli": {
-    "packageManager": "yarn"
-  },
-  "schematics": {
-    "@schematics/angular:component": {
-      "inlineStyle": true,
-      "inlineTemplate": false,
-      "spec": false,
-      "prefix": "jhi",
-      "styleExt": "scss"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "kotlinster": {
+            "root": "",
+            "sourceRoot": "src/main/webapp",
+            "projectType": "application",
+            "architect": {}
+        }
     },
-    "@schematics/angular:directive": {
-      "spec": false,
-      "prefix": "jhi"
+    "defaultProject": "kotlinster",
+    "cli": {
+        "packageManager": "yarn"
     },
-    "@schematics/angular:guard": {
-      "spec": false
+    "schematics": {
+        "@schematics/angular:component": {
+            "inlineStyle": true,
+            "inlineTemplate": false,
+            "spec": false,
+            "prefix": "jhi",
+            "styleExt": "scss"
+        },
+        "@schematics/angular:directive": {
+            "spec": false,
+            "prefix": "jhi"
+        },
+        "@schematics/angular:guard": {
+            "spec": false
+        },
+        "@schematics/angular:pipe": {
+            "spec": false
+        },
+        "@schematics/angular:service": {
+            "spec": false
+        }
     },
-    "@schematics/angular:pipe": {
-      "spec": false
-    },
-    "@schematics/angular:service": {
-      "spec": false
-    }
-  }
+    "scripts": ["node_modules/jquery/dist/jquery.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js"]
 }
