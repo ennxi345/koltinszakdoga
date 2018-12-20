@@ -49,7 +49,6 @@ export class TelephelyModalComponent implements OnInit, OnDestroy {
     public openConfirmDialog(entity: Telephely): void {
         if (entity) {
             this.telephely = entity;
-            console.log(this.telephely);
         }
     }
 
@@ -60,7 +59,7 @@ export class TelephelyModalComponent implements OnInit, OnDestroy {
     onSaveSuccess(response: any) {
         this.modalRef.hide();
         this.eventManager.broadcast({
-            name: 'HeadquarterList-modification',
+            name: 'TelephelyList-modification',
             content: 'OK'
         });
 
@@ -68,6 +67,6 @@ export class TelephelyModalComponent implements OnInit, OnDestroy {
     }
 
     onSaveError(response: any) {
-        this.alertService.error('Sikertelen mentéssdsd!');
+        this.alertService.error('Sikertelen mentés!');
     }
 }

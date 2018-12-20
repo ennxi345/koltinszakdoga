@@ -2,14 +2,16 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { EntityService } from '../../entity.service';
 import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
 import { RouterModule } from '@angular/router';
-import { entityRoute } from 'app/entities/entity.route';
+import { entityPopupRoute, entityRoute } from 'app/entities/entity.route';
 import { TelephelyComponent } from 'app/entities/headquarter/telephely.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-modal.component';
 import { KotlinsterSharedModule } from 'app/shared';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
+import { PopupComponent } from 'app/entities/abstract/service/popup.component';
 
-const ENTITY_STATES = [...entityRoute];
+const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
 @NgModule({
     // prettier-ignore
@@ -20,9 +22,9 @@ const ENTITY_STATES = [...entityRoute];
         NgxDatatableModule,
 
     ],
-    declarations: [VehicleComponent, TelephelyComponent, TelephelyModalComponent],
-    entryComponents: [TelephelyModalComponent],
-    providers: [EntityService],
+    declarations: [VehicleComponent, TelephelyComponent, TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent],
+    entryComponents: [TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent],
+    providers: [EntityService, PopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class KotlinsterEntityModule {}

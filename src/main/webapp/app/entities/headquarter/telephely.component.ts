@@ -9,9 +9,10 @@ import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-moda
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { faAlignRight } from '@fortawesome/free-solid-svg-icons';
+import { DeleteDialogComponent } from 'app/entities/abstract/component/delete-dialog.component';
 
 @Component({
-    selector: 'telephely',
+    selector: 'jhi-telephely',
     templateUrl: './telephely.component.html'
 })
 export class TelephelyComponent implements OnInit, OnDestroy {
@@ -40,7 +41,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.eventSubscriber = this.eventManager.subscribe('HeadquarterList-modification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe('TelephelyList-modification', response => this.loadAll());
         this.columns = [
             { prop: 'nev', name: 'Név' },
             { prop: 'megye.megyeNev', name: 'Megye' },
@@ -86,12 +87,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     onDelete(row: Telephely) {
-        this.entityService.delete(row.id, this.url).subscribe(response =>
-            this.eventManager.broadcast({
-                name: 'HeadquarterList-modification',
-                content: 'Deleted headquarters'
-            })
-        );
-        this.toasterService.success('Sikeres törlés', null);
+        this.router.navigateByUrl('vehicle');
     }
 }
