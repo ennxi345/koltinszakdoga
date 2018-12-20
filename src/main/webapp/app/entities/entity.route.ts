@@ -13,16 +13,26 @@ export const entityRoute: Routes = [
         component: TelephelyComponent
     },
     {
-        path: 'telephely/:id/delete',
+        path: ':entity/edit',
+        component: DeleteDialogPopupComponent,
+        outlet: 'popup'
+    },
+    {
+        path: ':entity/edit/:id',
+        component: DeleteDialogPopupComponent,
+        outlet: 'popup'
+    },
+    {
+        path: ':entity/:id/delete',
         component: DeleteDialogPopupComponent,
         outlet: 'popup'
     }
 ];
 
 export const entityPopupRoute: Routes = [
-    {
-        path: 'telephely/:id/delete',
-        component: DeleteDialogPopupComponent,
-        outlet: 'popup'
-    }
+    /* {
+         path: 'telephely/:id/delete',
+         component: DeleteDialogPopupComponent,
+         outlet: 'popup'
+     }*/
 ];

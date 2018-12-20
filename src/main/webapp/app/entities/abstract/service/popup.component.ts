@@ -7,13 +7,13 @@ import { Telephely } from 'app/entities/headquarter/telephely.model';
 @Injectable()
 export class PopupComponent {
     private ngbModalRef: NgbModalRef;
-    url = 'api/telephely';
 
     constructor(private modalService: NgbModal, private router: Router, private entityService: EntityService) {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number): Promise<NgbModalRef> {
+    open(component: Component, id?: number, entityType?: string): Promise<NgbModalRef> {
+        const url = '/api/' + entityType;
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -21,23 +21,24 @@ export class PopupComponent {
             }
 
             if (id) {
-                this.entityService.find(id, this.url).subscribe(entity => {
-                    this.ngbModalRef = this.entityModalRef(component, entity);
+                this.entityService.find(id, url).subscribe(entity => {
+                    this.ngbModalRef = this.entityModalRef(component, entity, url);
                     resolve(this.ngbModalRef);
                 });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.entityModalRef(component, new Telephely());
+                    this.ngbModalRef = this.entityModalRef(component, {}, url);
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    entityModalRef(component: Component, entity: Telephely): NgbModalRef {
+    entityModalRef(component: Component, entity: any, url: string): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static' });
         modalRef.componentInstance.entity = entity;
+        modalRef.componentInstance.url = url;
         modalRef.result.then(
             result => {
                 this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });

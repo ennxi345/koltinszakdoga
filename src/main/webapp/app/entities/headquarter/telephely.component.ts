@@ -3,7 +3,7 @@ import { JhiAlertService, JhiEventManager, JhiTranslateComponent } from 'ng-jhip
 import { EntityService } from '../../../entity.service';
 import { Telephely } from 'app/entities/headquarter/telephely.model';
 import { Megye } from 'app/entities/county/megye.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-modal.component';
 import { Subscription } from 'rxjs';
@@ -33,6 +33,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         private entityService: EntityService,
         private modalService: BsModalService,
         protected toasterService: ToastrService,
+        private activatedRoute: ActivatedRoute,
         protected eventManager: JhiEventManager
     ) {
         this.telephely = new Telephely();
@@ -87,6 +88,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     onDelete(row: Telephely) {
-        this.router.navigateByUrl('vehicle');
+        this.router.navigate(['telephely', row.id, 'delete']);
     }
 }

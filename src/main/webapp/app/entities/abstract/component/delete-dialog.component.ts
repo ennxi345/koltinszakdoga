@@ -14,10 +14,12 @@ import { ToastrService } from 'ngx-toastr';
     selector: 'jhi-delete-dialog',
     templateUrl: './delete-dialog.component.html'
 })
-export class DeleteDialogComponent {
+export class DeleteDialogComponent implements OnInit {
     accepted = false;
-    entity: Telephely;
-    url = 'api/telephely';
+    url = '';
+    entity = null;
+
+    ngOnInit(): void {}
 
     constructor(
         private alertService: JhiAlertService,
@@ -55,7 +57,7 @@ export class DeleteDialogPopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            this.popupService.open(DeleteDialogComponent as Component, params['id']);
+            this.popupService.open(DeleteDialogComponent as Component, params['id'], params['entity']);
         });
     }
 
