@@ -42,7 +42,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.eventSubscriber = this.eventManager.subscribe('TelephelyList-modification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe('telephelyList-modification', response => this.loadAll());
         this.columns = [
             { prop: 'nev', name: 'Név' },
             { prop: 'megye.megyeNev', name: 'Megye' },
@@ -87,7 +87,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         this.modalRef = this.modalService.show(TelephelyModalComponent);
     }
 
-    onDelete(row: Telephely) {
-        this.router.navigate(['telephely', row.id, 'delete']);
+    onDelete(id: number) {
+        this.router.navigate(['telephely', id, 'delete']);
     }
 }

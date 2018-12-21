@@ -59,7 +59,7 @@ export class TelephelyModalComponent implements OnInit, OnDestroy {
     onSaveSuccess(response: any) {
         this.modalRef.hide();
         this.eventManager.broadcast({
-            name: 'TelephelyList-modification',
+            name: 'telephelyList-modification',
             content: 'OK'
         });
 

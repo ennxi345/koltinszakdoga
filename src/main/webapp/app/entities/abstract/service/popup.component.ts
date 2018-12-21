@@ -22,22 +22,23 @@ export class PopupComponent {
 
             if (id) {
                 this.entityService.find(id, url).subscribe(entity => {
-                    this.ngbModalRef = this.entityModalRef(component, entity, url);
+                    this.ngbModalRef = this.entityModalRef(component, entity, url, entityType);
                     resolve(this.ngbModalRef);
                 });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.entityModalRef(component, {}, url);
+                    this.ngbModalRef = this.entityModalRef(component, {}, url, entityType);
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    entityModalRef(component: Component, entity: any, url: string): NgbModalRef {
+    entityModalRef(component: Component, entity: any, url: string, entityType: string): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static' });
         modalRef.componentInstance.entity = entity;
+        modalRef.componentInstance.entityType = entityType;
         modalRef.componentInstance.url = url;
         modalRef.result.then(
             result => {
