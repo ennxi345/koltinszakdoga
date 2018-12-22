@@ -82,7 +82,7 @@ export class TelephelyModalPopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
-            this.popupService.open(TelephelyModalComponent as Component, params['id'], params['entity']);
+            this.popupService.open(TelephelyModalComponent as Component, params['id'], 'telephely');
         });
     }
 

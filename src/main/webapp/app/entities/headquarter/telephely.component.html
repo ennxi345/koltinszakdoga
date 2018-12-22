@@ -13,7 +13,7 @@
                            [columns]="columns">
                 <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
                     <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit/' + row.id } }]"> szerkesztés </button>
-                    <button type="button" class="btn btn-danger" [routerLink]="['/', { outlets: { popup: 'telephely/'+ row.id + '/delete'} }]"> törlés</button>
+                    <button type="button" class="btn btn-danger" [routerLink]="['/', { outlets: { popup: 'telephely/delete/'+ row.id  } }]"> törlés</button>
                 </ng-template>
             </ngx-datatable>
 </div>
