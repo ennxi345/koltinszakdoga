@@ -1,5 +1,5 @@
 <div class="row">
-    <button type="button" class="btn btn-primary" (click)="openConfirmDialog()">Új székhely</button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új székhely</button>
 </div>
 
 <div class="table-wrapper">
@@ -12,14 +12,8 @@
                            [footerHeight]="50"
                            [columns]="columns">
                 <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
-                    <a class="cursor-pointer"
-                       (click)="onEdit(row)">
-                        <span class="fa fa-edit fa-2x "></span>
-                    </a>
-                    <a class="cursor-pointer"
-                       [routerLink]="['/', { outlets: { popup: 'telephely/'+ row.id + '/delete'} }]">
-                        <span class="fa fa-trash fa-2x "></span>
-                    </a>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit/' + row.id } }]"> szerkesztés </button>
+                    <button type="button" class="btn btn-danger" [routerLink]="['/', { outlets: { popup: 'telephely/'+ row.id + '/delete'} }]"> törlés</button>
                 </ng-template>
             </ngx-datatable>
 </div>

@@ -1,15 +1,11 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { JhiAlertService, JhiEventManager, JhiTranslateComponent } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { Telephely } from 'app/entities/headquarter/telephely.model';
 import { Megye } from 'app/entities/county/megye.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-modal.component';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { faAlignRight } from '@fortawesome/free-solid-svg-icons';
-import { DeleteDialogComponent } from 'app/entities/abstract/component/delete-dialog.component';
 
 @Component({
     selector: 'jhi-telephely',
@@ -23,7 +19,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     megye: Megye;
     columns = [];
     url = 'api/telephely';
-    modalRef: BsModalRef;
     eventSubscriber: Subscription;
     @ViewChild('buttonTemplates') public buttonTemplates: TemplateRef<any>;
 
@@ -31,7 +26,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         private alertService: JhiAlertService,
         private router: Router,
         private entityService: EntityService,
-        private modalService: BsModalService,
         protected toasterService: ToastrService,
         private activatedRoute: ActivatedRoute,
         protected eventManager: JhiEventManager
@@ -49,7 +43,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
             { prop: 'telepules', name: 'Település' },
             { prop: 'cim', name: 'Cím' },
             { prop: 'email', name: 'Email' },
-            { prop: 'telefonszam', name: 'Telefonszám' },
+            { prop: 'telefonSzam', name: 'Telefonszám' },
             { prop: 'fax', name: 'Fax' },
             { prop: 'mukodesKezdete', name: 'Működés kezdete' },
             { cellTemplate: this.buttonTemplates }
@@ -71,20 +65,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         return this.megyeList.find(x => x.id === countyId);
     }
 
-    onEdit(row: Telephely) {
-        const copy = Object.assign({}, row);
-        const modal = this.modalService.show(TelephelyModalComponent);
-        (<TelephelyModalComponent>modal.content).openConfirmDialog(copy);
-    }
-
-    onActivate(event) {}
-
     onSelect({ event }) {
         console.log(event, this.selected);
-    }
-
-    openConfirmDialog() {
-        this.modalRef = this.modalService.show(TelephelyModalComponent);
     }
 
     onDelete(id: number) {

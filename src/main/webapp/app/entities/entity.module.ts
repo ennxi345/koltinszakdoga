@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { entityPopupRoute, entityRoute } from 'app/entities/entity.route';
 import { TelephelyComponent } from 'app/entities/headquarter/telephely.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TelephelyModalComponent } from 'app/entities/headquarter/telephely-modal.component';
+import { TelephelyModalComponent, TelephelyModalPopupComponent } from 'app/entities/headquarter/telephely-modal.component';
 import { KotlinsterSharedModule } from 'app/shared';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
@@ -22,8 +22,15 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         NgxDatatableModule,
 
     ],
-    declarations: [VehicleComponent, TelephelyComponent, TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent],
-    entryComponents: [TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent],
+    declarations: [
+        VehicleComponent,
+        TelephelyComponent,
+        TelephelyModalComponent,
+        DeleteDialogComponent,
+        DeleteDialogPopupComponent,
+        TelephelyModalPopupComponent
+    ],
+    entryComponents: [TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent, TelephelyModalPopupComponent],
     providers: [EntityService, PopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
