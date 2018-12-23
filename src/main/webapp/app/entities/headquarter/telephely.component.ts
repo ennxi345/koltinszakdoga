@@ -81,4 +81,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     onDelete(id: number) {
         this.router.navigate(['telephely', id, 'delete']);
     }
+
+    clearSearch() {
+        this.router.navigateByUrl('/telephely');
+    }
 }

@@ -34,6 +34,7 @@
     "ng-jhipster": "0.5.4",
     "ngx-bootstrap": "^3.1.2",
     "ngx-cookie": "2.0.1",
+    "ngx-date-picker": "0.0.24",
     "ngx-infinite-scroll": "0.5.1",
     "ngx-toastr": "^9.1.1",
     "ngx-webstorage": "2.0.1",

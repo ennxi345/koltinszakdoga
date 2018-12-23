@@ -1,4 +1,6 @@
 import { Megye } from 'app/entities/county/megye.model';
+import * as moment from 'moment';
+import _date = moment.unitOfTime._date;
 
 export class Telephely {
     constructor(

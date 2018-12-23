@@ -10,6 +10,7 @@
                    [offset]="pageNumber"
                    [count]="totalItems"
                    [limit]="itemsPerPage"
+                    (sort)="onSort($event)"
                    (page)="loadPage($event)">
         <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
             <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: url + '/edit/' + row.id } }]"> szerkesztés </button>

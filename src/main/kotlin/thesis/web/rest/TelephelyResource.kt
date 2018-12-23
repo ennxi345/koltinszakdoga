@@ -9,7 +9,9 @@ import thesis.service.TelephelyService
 import thesis.service.dto.TelephelyDTO
 import java.net.URI
 import com.sun.awt.SecurityWarning.getSize
+import io.swagger.annotations.ApiParam
 import org.springframework.data.domain.Page
+import thesis.service.criteria.TelephelyCriteria
 import thesis.web.rest.util.PaginationUtil
 
 
@@ -44,8 +46,8 @@ class TelephelyResource(val service: TelephelyService) {
     }
 
     @GetMapping(ENTITY_URL + "/query")
-    fun query(pageable: Pageable): ResponseEntity<List<TelephelyDTO>> {
-        var page = service.query(pageable)
+    fun query(@ApiParam telephelyCriteria: TelephelyCriteria, pageable: Pageable): ResponseEntity<List<TelephelyDTO>> {
+        var page = service.query(telephelyCriteria ,pageable)
         var headers = PaginationUtil.generatePaginationHttpHeaders(page, Constant.API_BASE_URL + ENTITY_URL + "/query")
         return ResponseEntity(page.content, headers, HttpStatus.OK)
     }

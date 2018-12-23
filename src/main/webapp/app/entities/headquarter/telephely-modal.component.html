@@ -31,6 +31,16 @@
                 <input type="text" class="form-control" required id="telepules" name="telepules"
                        [(ngModel)]="entity.telepules"/>
             </div>
+            <label class="form-control-label col-lg-5">Működés kezdete</label>
+            <div class="col-xs-12 col-12 col-md-4 form-group">
+                <input type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       [(ngModel)]="entity.mukodesKezdete"
+                       [ngModelOptions]="{standalone: true}"
+                       [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                       bsDatepicker>
+            </div>
             <label class="form-control-label col-lg-5" for="iranyitoszam">Irányítószám</label>
             <div class="form-group">
                 <input type="text" class="form-control" required id="iranyitoszam" name="iranyitoszam"
@@ -56,7 +66,6 @@
                 <input type="text" class="form-control" required id="fax" name="fax"
                        [(ngModel)]="entity.fax"/>
             </div>
-
         </div>
         <div class="modal-footer">
             <button type="submit" name="submit" [disabled]="editForm.form.invalid" class="btn btn-primary">

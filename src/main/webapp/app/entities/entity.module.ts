@@ -11,6 +11,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
 import { PopupComponent } from 'app/entities/abstract/service/popup.component';
 import { TableBuilderComponent } from 'app/entities/abstract/component/table-builder.component';
+import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap';
 
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
@@ -21,6 +22,8 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         KotlinsterSharedModule,
         NgSelectModule,
         NgxDatatableModule,
+        DatepickerModule,
+        BsDatepickerModule.forRoot()
 
     ],
     declarations: [

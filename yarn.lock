@@ -6561,6 +6561,10 @@ ngx-cookie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
 
+ngx-date-picker@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/ngx-date-picker/-/ngx-date-picker-0.0.24.tgz#c7b50ffd5ebb147713a0112a47081322de5a0060"
+
 ngx-infinite-scroll@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.5.1.tgz#dd9452c602ff7c3222f0ca168481aa14140286b7"

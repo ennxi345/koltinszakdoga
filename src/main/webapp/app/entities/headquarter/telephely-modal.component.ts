@@ -21,6 +21,7 @@ export class TelephelyModalComponent implements OnInit, OnDestroy {
     megye: Megye;
     url = '';
     entity = new Telephely();
+    dateValue: Date;
 
     constructor(
         private alertService: JhiAlertService,

@@ -21,6 +21,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
     megyeList: Megye[];
     megye: Megye;
     row = new Array<Telephely>();
+    map = new Map();
 
     eventSubscriber: Subscription;
     @ViewChild('buttonTemplates') public buttonTemplates: TemplateRef<any>;
@@ -57,7 +58,8 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         this.entityService
             .query('api/' + this.url, {
                 page: this.pageNumber - 1,
-                size: this.itemsPerPage
+                size: this.itemsPerPage,
+                sort: this.sortOptions
             })
             .subscribe(
                 (res: HttpResponse<any[]>) => {
@@ -76,5 +78,9 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
             this.pageNumber = event.offset + 1;
             this.loadAll();
         }
+    }
+
+    onSort(event) {
+        this.sortOptions = event.sorts.map(s => `${this.map.get(s.prop)},${s.dir}`);
     }
 }
