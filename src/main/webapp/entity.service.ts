@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { JhiAlertService } from 'ng-jhipster';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { Page } from 'app/models/page.model';
+import { RequestOptions } from 'http';
+import { createRequestOption } from 'app/shared';
 
 @Injectable()
 export class EntityService {
@@ -28,6 +31,11 @@ export class EntityService {
 
     getAll(url: string): Observable<any> {
         return this.http.get(`${url}/all`);
+    }
+
+    query(url: string, filter: any): Observable<HttpResponse<any>> {
+        const options = createRequestOption(filter);
+        return this.http.get(`${url}/query`, { params: options, observe: 'response' });
     }
 
     delete(id: number, url: string) {

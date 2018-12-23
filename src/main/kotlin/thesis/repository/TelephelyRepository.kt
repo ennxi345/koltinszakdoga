@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 import thesis.entities.Telephely
 
 @Repository
-interface HeadquarterRepository : JpaRepository<Telephely,Long> {
+interface TelephelyRepository : JpaRepository<Telephely,Long> {
 }

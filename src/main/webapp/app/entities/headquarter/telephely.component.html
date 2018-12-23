@@ -2,19 +2,5 @@
     <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új székhely</button>
 </div>
 
-<div class="table-wrapper">
-            <ngx-datatable class="material"
-                           [rows]="telephelyList"
-                           [columnMode]="'force'"
-                           [rowHeight]="auto"
-                           [limit]="20"
-                           [headerHeight]="50"
-                           [footerHeight]="50"
-                           [columns]="columns">
-                <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
-                    <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit/' + row.id } }]"> szerkesztés </button>
-                    <button type="button" class="btn btn-danger" [routerLink]="['/', { outlets: { popup: 'telephely/delete/'+ row.id  } }]"> törlés</button>
-                </ng-template>
-            </ngx-datatable>
-</div>
+<jhi-table-builder [columns]="columns" [url]="'telephely'"></jhi-table-builder>
 

@@ -1,0 +1,19 @@
+<div class="table-wrapper">
+    <ngx-datatable class="material"
+                   [rows]="items"
+                   [columnMode]="'force'"
+                   [rowHeight]="auto"
+                   [headerHeight]="50"
+                   [footerHeight]="50"
+                   [columns]="columns"
+                   [externalPaging]="true"
+                   [offset]="pageNumber"
+                   [count]="totalItems"
+                   [limit]="itemsPerPage"
+                   (page)="loadPage($event)">
+        <ng-template #buttonTemplates let-row="row" let-value="value" let-i="index">
+            <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: url + '/edit/' + row.id } }]"> szerkesztés </button>
+            <button type="button" class="btn btn-danger" [routerLink]="['/', { outlets: { popup: url + '/delete/'+ row.id  } }]"> törlés</button>
+        </ng-template>
+    </ngx-datatable>
+</div>

@@ -10,6 +10,7 @@ import { KotlinsterSharedModule } from 'app/shared';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
 import { PopupComponent } from 'app/entities/abstract/service/popup.component';
+import { TableBuilderComponent } from 'app/entities/abstract/component/table-builder.component';
 
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
@@ -28,7 +29,8 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         TelephelyModalComponent,
         DeleteDialogComponent,
         DeleteDialogPopupComponent,
-        TelephelyModalPopupComponent
+        TelephelyModalPopupComponent,
+        TableBuilderComponent
     ],
     entryComponents: [TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent, TelephelyModalPopupComponent],
     providers: [EntityService, PopupComponent],

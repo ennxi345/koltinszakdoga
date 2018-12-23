@@ -6,6 +6,9 @@ import { Megye } from 'app/entities/county/megye.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Page } from 'app/models/page.model';
+import { HttpResponse } from '@angular/common/http';
+import { ITEMS_PER_PAGE } from 'app/shared';
 
 @Component({
     selector: 'jhi-telephely',
@@ -17,10 +20,17 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     telephelyList: Telephely[];
     megyeList: Megye[];
     megye: Megye;
+    row = new Array<Telephely>();
     columns = [];
     url = 'api/telephely';
     eventSubscriber: Subscription;
-    @ViewChild('buttonTemplates') public buttonTemplates: TemplateRef<any>;
+
+    itemsPerPage = ITEMS_PER_PAGE;
+    totalItems = 0;
+    pageNumber = 0;
+    previousPage = 0;
+    sortOptions: string[];
+    items: any[] = [];
 
     constructor(
         private alertService: JhiAlertService,
@@ -36,7 +46,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.eventSubscriber = this.eventManager.subscribe('telephelyList-modification', response => this.loadAll());
+
         this.columns = [
             { prop: 'nev', name: 'Név' },
             { prop: 'megye.megyeNev', name: 'Megye' },
@@ -45,14 +55,13 @@ export class TelephelyComponent implements OnInit, OnDestroy {
             { prop: 'email', name: 'Email' },
             { prop: 'telefonSzam', name: 'Telefonszám' },
             { prop: 'fax', name: 'Fax' },
-            { prop: 'mukodesKezdete', name: 'Működés kezdete' },
-            { cellTemplate: this.buttonTemplates }
+            { prop: 'mukodesKezdete', name: 'Működés kezdete' }
         ];
     }
 
     loadAll() {
         this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties as Megye[]));
-        this.entityService.getAll(this.url).subscribe(headquarters => (this.telephelyList = headquarters as Telephely[]));
+        this.entityService.getAll(this.url).subscribe(telephelys => (this.telephelyList = telephelys as Telephely[]));
     }
 
     public trackByFn(index, item) {
