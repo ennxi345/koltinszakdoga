@@ -16,6 +16,7 @@ import { HttpResponse } from '@angular/common/http';
 export class TableBuilderComponent implements OnInit, OnDestroy {
     @Input() columns: any;
     @Input() url: string;
+    queryParams: any;
 
     selected = [];
     megyeList: Megye[];
@@ -59,7 +60,8 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
             .query('api/' + this.url, {
                 page: this.pageNumber - 1,
                 size: this.itemsPerPage,
-                sort: this.sortOptions
+                sort: this.sortOptions,
+                query: this.queryParams
             })
             .subscribe(
                 (res: HttpResponse<any[]>) => {

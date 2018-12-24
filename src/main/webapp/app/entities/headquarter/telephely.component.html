@@ -4,17 +4,23 @@
         <div class="col-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span>Engedély kereső</span>
+                    <span>Telephely kereső</span>
                 </div>
                 <form class="panel-body" (ngSubmit)="onSearch()">
                     <div class="row">
                         <div class="col-6">
-                            <label class="mb-0 form-control-label" for="filterNev">Ügyfél
-                                név</label>
+                            <label class="mb-0 form-control-label" for="filterNev">Ügyfél név</label>
                             <input type="text" [(ngModel)]="telephely.nev"
                                    class="form-control"
                                    id="filterNev" name="filterNev"
                                    placeholder="Ügyfél név">
+                        </div>
+                        <div class="col-6">
+                            <label class="mb-0 form-control-label" for="filterNev">Település neve</label>
+                            <input type="text" [(ngModel)]="telephely.telepules"
+                                   class="form-control"
+                                   id="filterTelepules" name="filterTelepules"
+                                   placeholder="Település neve">
                         </div>
                     </div>
 
@@ -40,5 +46,5 @@
     <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új székhely</button>
 </div>
 
-<jhi-table-builder [columns]="columns" [url]="'telephely'"></jhi-table-builder>
+<jhi-table-builder #table [columns]="columns" [url]="'telephely'" [queryParams]="queryParams"></jhi-table-builder>
 

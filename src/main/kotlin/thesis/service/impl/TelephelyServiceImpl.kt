@@ -1,5 +1,7 @@
 package thesis.service.impl
 
+import io.github.jhipster.service.QueryService
+import io.github.jhipster.service.filter.StringFilter
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
@@ -15,7 +17,7 @@ import thesis.service.mapper.TelephelyMapper
 import javax.swing.text.html.HTMLDocument
 
 @Service
-class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService {
+class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService, QueryService<Telephely>() {
 
     override fun getAll(): List<TelephelyDTO> {
         return telephelyMapper.convertToDtoList(telephelyRepository.findAll())
@@ -39,15 +41,19 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
     }
 
     override fun query(criteria: TelephelyCriteria, pageable: Pageable): Page<TelephelyDTO> {
-        return telephelyRepository.findAll(pageable).map(telephelyMapper::convertToDto)
+        var specification = createSpecification(criteria)
+        return telephelyRepository.findAll(specification,pageable).map(telephelyMapper::convertToDto)
     }
 
-    fun createSpecification(criteria: TelephelyCriteria) : Specifications<Telephely> {
-        var specification: Specifications<Telephely> = Specifications.where(null)
+    fun createSpecification(criteria: TelephelyCriteria) : Specification<Telephely> {
+        var specification: Specification<Telephely> = Specification.where(null)
 
         if(criteria != null) {
             if (criteria.nev != null) {
-                specification = specification
+                specification = specification.and(buildStringSpecification(criteria.nev, Telephely_.nev))
+            }
+            if (criteria.telepules != null) {
+                specification = specification.and(buildStringSpecification(criteria.telepules, Telephely_.telepules))
             }
         }
         return specification

@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Page } from 'app/models/page.model';
 import { HttpResponse } from '@angular/common/http';
 import { ITEMS_PER_PAGE } from 'app/shared';
+import { TableBuilderComponent } from 'app/entities/abstract/component/table-builder.component';
 
 @Component({
     selector: 'jhi-telephely',
@@ -25,12 +26,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     url = 'api/telephely';
     eventSubscriber: Subscription;
 
-    itemsPerPage = ITEMS_PER_PAGE;
-    totalItems = 0;
-    pageNumber = 0;
-    previousPage = 0;
-    sortOptions: string[];
-    items: any[] = [];
+    @ViewChild('table') table: TableBuilderComponent;
+    queryParams: any;
 
     constructor(
         private alertService: JhiAlertService,
@@ -48,9 +45,9 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         this.loadAll();
 
         this.columns = [
-            { prop: 'nev', name: 'Név' },
-            { prop: 'megye.megyeNev', name: 'Megye' },
-            { prop: 'telepules', name: 'Település' },
+            { prop: 'nev', name: 'Név', sort: 'nev' },
+            { prop: 'megye.megyeNev', name: 'Megye', sort: 'megye.megyeNev' },
+            { prop: 'telepules', name: 'Település', sort: 'telepules' },
             { prop: 'cim', name: 'Cím' },
             { prop: 'email', name: 'Email' },
             { prop: 'telefonSzam', name: 'Telefonszám' },
@@ -80,6 +77,14 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
     onDelete(id: number) {
         this.router.navigate(['telephely', id, 'delete']);
+    }
+
+    onSearch() {
+        this.queryParams = { 'nev.contains': this.telephely.nev };
+        if (this.table) {
+            this.table.queryParams = this.queryParams;
+            this.table.loadAll();
+        }
     }
 
     clearSearch() {

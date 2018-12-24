@@ -1,10 +1,9 @@
 import { Megye } from 'app/entities/county/megye.model';
-import * as moment from 'moment';
-import _date = moment.unitOfTime._date;
 
 export class Telephely {
     constructor(
         public id?: number,
+        public nev?: string,
         public megye?: Megye,
         public telepules?: string,
         public iranyitoSzam?: string,

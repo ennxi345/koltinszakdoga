@@ -6,8 +6,9 @@ import java.io.Serializable
 
  class TelephelyCriteria() {
     
-     lateinit var id: LongFilter
-     lateinit var nev: StringFilter
+     var id: LongFilter? = null
+     var nev: StringFilter? = null
+     var telepules: StringFilter? = null
 
 
 }
