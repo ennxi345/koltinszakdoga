@@ -4,7 +4,7 @@ export const createRequestOption = (req?: any): HttpParams => {
     let options: HttpParams = new HttpParams();
     if (req) {
         Object.keys(req).forEach(key => {
-            if (key !== 'sort' && key !== 'query') {
+            if (key !== 'sort' && key !== 'query' && key !== 'telepules') {
                 options = options.set(key, req[key]);
             }
         });
@@ -13,11 +13,12 @@ export const createRequestOption = (req?: any): HttpParams => {
                 options = options.append('sort', val);
             });
         }
+
         if (req.query) {
             const keys = Object.keys(req.query);
 
-            keys.forEach(key => {
-                options = options.append(key, req.query[key]);
+            Object.keys(req.query).forEach(key => {
+                options = options.append(req.query[key].searchFilter, req.query[key].fieldValue);
             });
         }
     }

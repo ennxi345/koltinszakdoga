@@ -71,16 +71,15 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         return this.megyeList.find(x => x.id === countyId);
     }
 
-    onSelect({ event }) {
-        console.log(event, this.selected);
-    }
-
     onDelete(id: number) {
         this.router.navigate(['telephely', id, 'delete']);
     }
 
     onSearch() {
-        this.queryParams = { 'nev.contains': this.telephely.nev };
+        this.queryParams = [
+            { searchFilter: 'nev.contains', fieldValue: this.telephely.nev },
+            { searchFilter: 'telepules.contains', fieldValue: this.telephely.telepules }
+        ];
         if (this.table) {
             this.table.queryParams = this.queryParams;
             this.table.loadAll();
@@ -89,5 +88,9 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
     clearSearch() {
         this.router.navigateByUrl('/telephely');
+        if (this.table) {
+            this.table.queryParams = null;
+            this.table.loadAll();
+        }
     }
 }
