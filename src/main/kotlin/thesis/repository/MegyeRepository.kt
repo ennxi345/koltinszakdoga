@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository
 import thesis.entities.Megye
 
 @Repository
-interface CountyRepository : JpaRepository<Megye,Long> {
+interface MegyeRepository : JpaRepository<Megye,Long> {
 
 }

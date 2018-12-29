@@ -28,8 +28,7 @@ data class Telephely(
     @Column(name = "fax", length = 100)
     var fax: String?,
     @Column(name = "mukodes_kezdete")
-    var mukodesKezdete: LocalDate?
-    ){
+    var mukodesKezdete: LocalDate?){
 
     constructor() : this(null, null, null, null, null, null, null,null,null,null)
 

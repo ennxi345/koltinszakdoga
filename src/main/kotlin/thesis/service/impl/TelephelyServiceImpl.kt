@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.domain.Specifications
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import thesis.entities.Telephely
 import thesis.entities.Telephely_
 import thesis.repository.TelephelyRepository
@@ -16,6 +17,7 @@ import thesis.service.dto.TelephelyDTO
 import thesis.service.mapper.TelephelyMapper
 import javax.swing.text.html.HTMLDocument
 
+@Transactional
 @Service
 class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService, QueryService<Telephely>() {
 
@@ -27,7 +29,8 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
         return telephelyMapper.convertToDto(telephelyRepository.getOne(id))
     }
 
-    override fun save(telephelyDTO: TelephelyDTO) : TelephelyDTO {
+    @Transactional
+    override fun save(telephelyDTO: TelephelyDTO): TelephelyDTO {
         var entity: Telephely = telephelyMapper.convertToEntity(telephelyDTO)
         return telephelyMapper.convertToDto(telephelyRepository.save(entity))
     }
@@ -40,20 +43,33 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    @Transactional
     override fun query(criteria: TelephelyCriteria, pageable: Pageable): Page<TelephelyDTO> {
         var specification = createSpecification(criteria)
-        return telephelyRepository.findAll(specification,pageable).map(telephelyMapper::convertToDto)
+        return telephelyRepository.findAll(specification, pageable).map(telephelyMapper::convertToDto)
     }
 
-    fun createSpecification(criteria: TelephelyCriteria) : Specification<Telephely> {
+    fun createSpecification(criteria: TelephelyCriteria): Specification<Telephely> {
         var specification: Specification<Telephely> = Specification.where(null)
 
-        if(criteria != null) {
+        if (criteria != null) {
             if (criteria.nev != null) {
                 specification = specification.and(buildStringSpecification(criteria.nev, Telephely_.nev))
             }
             if (criteria.telepules != null) {
                 specification = specification.and(buildStringSpecification(criteria.telepules, Telephely_.telepules))
+            }
+            if (criteria.megyeId != null) {
+                TODO("Create a complex specification")
+            }
+            if (criteria.cim != null) {
+                specification = specification.and(buildStringSpecification(criteria.cim, Telephely_.cim))
+            }
+            if (criteria.mukodesKezdeteK != null) {
+                specification = specification.and(buildRangeSpecification(criteria.mukodesKezdeteK, Telephely_.mukodesKezdete))
+            }
+            if (criteria.mukodesKezdeteV != null) {
+                specification = specification.and(buildRangeSpecification(criteria.mukodesKezdeteV, Telephely_.mukodesKezdete))
             }
         }
         return specification
