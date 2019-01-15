@@ -14,12 +14,11 @@ import { TableBuilderComponent } from 'app/entities/abstract/component/table-bui
 })
 export class TelephelyComponent implements OnInit, OnDestroy {
     telephely: Telephely;
-    mukodesKezdeteK: Date;
-    mukodesKezdeteV: Date;
+    mukodesKezdeteK = new Date();
+    mukodesKezdeteV = new Date();
+    megyeId: number;
     bsRangeValue: Date[];
-    maxDate = new Date();
     megyeList: Megye[];
-    megye: Megye;
     row = new Array<Telephely>();
     columns = [];
     url = 'api/telephely';
@@ -38,10 +37,11 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         protected dateHelper: JhiDateUtils
     ) {
         this.telephely = new Telephely();
-        this.megye = new Megye();
-        this.telephely.nev = '';
-        this.telephely.telepules = '';
-        this.telephely.cim = '';
+        this.megyeId = null;
+        this.telephely.nev = null;
+        this.telephely.telepules = null;
+        this.telephely.cim = null;
+        this.bsRangeValue = [new Date(), new Date()];
     }
 
     ngOnInit() {
@@ -57,9 +57,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.telephely.nev = '';
-        this.telephely.telepules = '';
-        this.telephely.cim = '';
         this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties as Megye[]));
     }
 
@@ -73,11 +70,29 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         this.router.navigate(['telephely', id, 'delete']);
     }
 
+    megyeChange() {
+        this.megyeId = this.telephely.megye.id;
+    }
+
+    mukodesDatumChange() {
+        this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
+        this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
+    }
+
     onSearch() {
+        if (this.bsRangeValue) {
+            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
+            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
+        }
+
         this.queryParams = [
             { searchFilter: 'nev.contains', fieldValue: this.telephely.nev },
-            { searchFilter: 'telepules.contains', fieldValue: this.telephely.telepules },
+            {
+                searchFilter: 'telepules.contains',
+                fieldValue: this.telephely.telepules
+            },
             { searchFilter: 'cim.contains', fieldValue: this.telephely.cim },
+            { searchFilter: 'megyeId.equals', fieldValue: this.megyeId },
             {
                 searchFilter: 'mukodesKezdeteK.greaterOrEqualThan',
                 fieldValue: new Date(this.bsRangeValue[0])
@@ -95,6 +110,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         ];
         if (this.table) {
             this.table.queryParams = this.queryParams;
+            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() - 1);
+            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() - 1);
             this.table.loadAll();
         }
     }

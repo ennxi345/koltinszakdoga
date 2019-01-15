@@ -25,9 +25,9 @@ class TelephelyResource(val service: TelephelyService) {
 
 
     @PostMapping(ENTITY_URL)
-    fun create(@RequestBody iDTO: TelephelyDTO) : ResponseEntity<TelephelyDTO>{
-       var telephelyDTO = service.save(iDTO)
-        if(telephelyDTO.id == null) {
+    fun create(@RequestBody iDTO: TelephelyDTO): ResponseEntity<TelephelyDTO> {
+        var telephelyDTO = service.save(iDTO)
+        if (telephelyDTO.id == null) {
             return ResponseEntity.badRequest().body(null)
         }
 
@@ -47,7 +47,7 @@ class TelephelyResource(val service: TelephelyService) {
 
     @GetMapping(ENTITY_URL + "/query")
     fun query(@ApiParam telephelyCriteria: TelephelyCriteria, pageable: Pageable): ResponseEntity<List<TelephelyDTO>> {
-        var page = service.query(telephelyCriteria ,pageable)
+        var page = service.query(telephelyCriteria, pageable)
         var headers = PaginationUtil.generatePaginationHttpHeaders(page, Constant.API_BASE_URL + ENTITY_URL + "/query")
         return ResponseEntity(page.content, headers, HttpStatus.OK)
     }
@@ -62,8 +62,8 @@ class TelephelyResource(val service: TelephelyService) {
         return ResponseEntity.ok(service.getById(id))
     }
 
-    @DeleteMapping( ENTITY_URL + "/{id}")
-    fun deleteById(@PathVariable ("id") id: Long) : ResponseEntity<Void> {
+    @DeleteMapping(ENTITY_URL + "/{id}")
+    fun deleteById(@PathVariable("id") id: Long): ResponseEntity<Void> {
         service.deleteById(id)
         return ResponseEntity.ok().build()
 

@@ -15,6 +15,4 @@ import java.io.Serializable
      var cim: StringFilter? = null
      var mukodesKezdeteK: LocalDateFilter? = null
      var mukodesKezdeteV: LocalDateFilter? = null
-
-
 }

@@ -30,6 +30,7 @@
                                 bindLabel="megyeNev"
                                 name="megyeList"
                                 [multiple]="false"
+                                (change) = "megyeChange()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="telephely.megye">

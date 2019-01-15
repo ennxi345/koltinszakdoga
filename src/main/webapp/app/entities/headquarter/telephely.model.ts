@@ -5,6 +5,7 @@ export class Telephely {
         public id?: number,
         public nev?: string,
         public megye?: Megye,
+        public megyeId?: number,
         public telepules?: string,
         public iranyitoSzam?: string,
         public cim?: string,

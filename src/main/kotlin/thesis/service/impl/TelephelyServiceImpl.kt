@@ -1,6 +1,8 @@
 package thesis.service.impl
 
 import io.github.jhipster.service.QueryService
+import io.github.jhipster.service.filter.LongFilter
+import io.github.jhipster.service.filter.RangeFilter
 import io.github.jhipster.service.filter.StringFilter
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -8,6 +10,8 @@ import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.domain.Specifications
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import thesis.entities.Megye
+import thesis.entities.Megye_
 import thesis.entities.Telephely
 import thesis.entities.Telephely_
 import thesis.repository.TelephelyRepository
@@ -15,6 +19,7 @@ import thesis.service.TelephelyService
 import thesis.service.criteria.TelephelyCriteria
 import thesis.service.dto.TelephelyDTO
 import thesis.service.mapper.TelephelyMapper
+import javax.persistence.criteria.*
 import javax.swing.text.html.HTMLDocument
 
 @Transactional
@@ -60,7 +65,7 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
                 specification = specification.and(buildStringSpecification(criteria.telepules, Telephely_.telepules))
             }
             if (criteria.megyeId != null) {
-                TODO("Create a complex specification")
+                specification = specification.and(joinMegye(criteria.megyeId!!.equals))
             }
             if (criteria.cim != null) {
                 specification = specification.and(buildStringSpecification(criteria.cim, Telephely_.cim))
@@ -73,5 +78,21 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
             }
         }
         return specification
+    }
+
+/*    fun joinMegye(input: LongFilter): Specification<Telephely> {
+        return Specification<Telephely> { root, query, cb ->
+            val join = root
+                .join(Telephely_.megye, JoinType.LEFT)
+            cb.equal(join.get(Megye_.id), input.equals)
+        }
+    }*/
+
+    fun joinMegye(input: Long?): Specification<Telephely> {
+        return Specification<Telephely> { root, query, cb ->
+            val telephelyMegye = root.join<Megye, Telephely>("megye")
+            telephelyMegye.on(cb.equal(root.get<Telephely>("megye"), telephelyMegye.get<Megye>("id")))
+            cb.equal(telephelyMegye.get<Megye>("id"), input)
+        }
     }
 }

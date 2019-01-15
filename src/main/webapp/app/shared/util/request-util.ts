@@ -18,7 +18,9 @@ export const createRequestOption = (req?: any): HttpParams => {
             const keys = Object.keys(req.query);
 
             Object.keys(req.query).forEach(key => {
-                options = options.append(req.query[key].searchFilter, req.query[key].fieldValue);
+                if (req.query[key].fieldValue) {
+                    options = options.append(req.query[key].searchFilter, req.query[key].fieldValue);
+                }
             });
         }
     }
