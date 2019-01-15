@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
-import { TelephelyComponent } from 'app/entities/headquarter/telephely.component';
+import { TelephelyComponent } from 'app/entities/telephely/telephely.component';
 import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
-import { TelephelyModalPopupComponent } from 'app/entities/headquarter/telephely-modal.component';
+import { TelephelyModalPopupComponent } from 'app/entities/telephely/telephely-modal.component';
 
 export const entityRoute: Routes = [
     {

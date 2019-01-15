@@ -2,7 +2,7 @@ package thesis.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
-import thesis.entities.Megye
+import thesis.entities.Beosztas
 
 @Repository
-interface MegyeRepository : JpaRepository<Megye,Long>
+interface BeosztasRepository : JpaRepository<Beosztas, Long>

@@ -23,7 +23,6 @@ class TelephelyResource(val service: TelephelyService) {
         const val ENTITY_URL: String = "/telephely"
     }
 
-
     @PostMapping(ENTITY_URL)
     fun create(@RequestBody iDTO: TelephelyDTO): ResponseEntity<TelephelyDTO> {
         var telephelyDTO = service.save(iDTO)

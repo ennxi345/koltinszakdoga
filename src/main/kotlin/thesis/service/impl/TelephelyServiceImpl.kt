@@ -1,17 +1,12 @@
 package thesis.service.impl
 
 import io.github.jhipster.service.QueryService
-import io.github.jhipster.service.filter.LongFilter
-import io.github.jhipster.service.filter.RangeFilter
-import io.github.jhipster.service.filter.StringFilter
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
-import org.springframework.data.jpa.domain.Specifications
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import thesis.entities.Megye
-import thesis.entities.Megye_
 import thesis.entities.Telephely
 import thesis.entities.Telephely_
 import thesis.repository.TelephelyRepository
@@ -19,8 +14,6 @@ import thesis.service.TelephelyService
 import thesis.service.criteria.TelephelyCriteria
 import thesis.service.dto.TelephelyDTO
 import thesis.service.mapper.TelephelyMapper
-import javax.persistence.criteria.*
-import javax.swing.text.html.HTMLDocument
 
 @Transactional
 @Service

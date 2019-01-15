@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20190115203000" author="ciprian">
+        <createTable tableName="dolgozo">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="vezeteknev" type="varchar(50)"></column>
+            <column name="keresztnev" type="varchar(50)"></column>
+            <column name="beosztas_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telephely_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lakhely" type="varchar(100)"></column>
+            <column name="iranyitoszam" type="smallint"></column>
+            <column name="cim" type="varchar(200)"></column>
+            <column name="telefonszam" type="varchar(50)"></column>
+            <column name="fizetes" type="bigint"></column>
+            <column name="szulIdo" type="date"></column>
+            <column name="munkaviszony_kezdete" type="date"></column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="beosztas_id"
+                                 baseTableName="dolgozo"
+                                 constraintName="fk_head_beosztas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="beosztas"/>
+        <addForeignKeyConstraint baseColumnNames="telephely_id"
+                                 baseTableName="dolgozo"
+                                 constraintName="fk_head_telephely_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="telephely"/>
+    </changeSet>
+</databaseChangeLog>
