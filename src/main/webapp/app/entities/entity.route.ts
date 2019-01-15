@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
 import { TelephelyComponent } from 'app/entities/telephely/telephely.component';
-import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
+import { DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
 import { TelephelyModalPopupComponent } from 'app/entities/telephely/telephely-modal.component';
+import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
+import { DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
 
 export const entityRoute: Routes = [
     {
@@ -21,6 +23,20 @@ export const entityRoute: Routes = [
     {
         path: 'telephely/edit/:id',
         component: TelephelyModalPopupComponent,
+        outlet: 'popup'
+    },
+    {
+        path: 'dolgozo',
+        component: DolgozoComponent
+    },
+    {
+        path: 'dolgozo/edit',
+        component: DolgozoModalPopupComponent,
+        outlet: 'popup'
+    },
+    {
+        path: 'dolgozo/edit/:id',
+        component: DolgozoModalPopupComponent,
         outlet: 'popup'
     },
     {

@@ -12,6 +12,8 @@ import { DeleteDialogComponent, DeleteDialogPopupComponent } from 'app/entities/
 import { PopupComponent } from 'app/entities/abstract/service/popup.component';
 import { TableBuilderComponent } from 'app/entities/abstract/component/table-builder.component';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap';
+import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
+import { DolgozoModalComponent, DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
 
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
@@ -33,9 +35,19 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         DeleteDialogComponent,
         DeleteDialogPopupComponent,
         TelephelyModalPopupComponent,
-        TableBuilderComponent
+        TableBuilderComponent,
+        DolgozoComponent,
+        DolgozoModalComponent,
+        DolgozoModalPopupComponent
     ],
-    entryComponents: [TelephelyModalComponent, DeleteDialogComponent, DeleteDialogPopupComponent, TelephelyModalPopupComponent],
+    entryComponents: [
+        TelephelyModalComponent,
+        DolgozoModalComponent,
+        DeleteDialogComponent,
+        DeleteDialogPopupComponent,
+        TelephelyModalPopupComponent,
+        DolgozoModalPopupComponent
+    ],
     providers: [EntityService, PopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

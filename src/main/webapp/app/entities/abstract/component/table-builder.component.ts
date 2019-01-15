@@ -16,6 +16,7 @@ import { HttpResponse } from '@angular/common/http';
 export class TableBuilderComponent implements OnInit, OnDestroy {
     @Input() columns: any;
     @Input() url: string;
+    @Input() eventName: string;
     queryParams: {};
 
     selected = [];
@@ -49,7 +50,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.loadAll();
-        this.eventSubscriber = this.eventManager.subscribe('telephelyList-modification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe(this.eventName, response => this.loadAll());
     }
 
     loadAll() {

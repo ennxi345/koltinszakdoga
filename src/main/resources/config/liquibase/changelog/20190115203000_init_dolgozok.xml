@@ -21,7 +21,7 @@
             <column name="cim" type="varchar(200)"></column>
             <column name="telefonszam" type="varchar(50)"></column>
             <column name="fizetes" type="bigint"></column>
-            <column name="szulIdo" type="date"></column>
+            <column name="szul_ido" type="date"></column>
             <column name="munkaviszony_kezdete" type="date"></column>
         </createTable>
 

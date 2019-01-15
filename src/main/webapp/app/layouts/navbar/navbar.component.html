@@ -39,6 +39,11 @@
                             <span>Telephely</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="dolgozo" routerLinkActive="active" (click)="collapseNavbar()">
+                            <span>Dolgozó</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

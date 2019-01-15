@@ -1,42 +1,58 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
     <div class="modal-lg">
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Telephely</h4>
+            <h4 class="modal-title pull-left">Dolgozó</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <jhi-alert-error></jhi-alert-error>
-            <label class="form-control-label col-lg-5" for="fax">Név</label>
+            <label class="form-control-label col-lg-5">Vezetéknév</label>
             <div class="form-group">
-                <input type="text" class="form-control" required id="nev" name="nev"
-                       [(ngModel)]="entity.nev"/>
+                <input type="text" class="form-control" required id="vezetek" name="vezetek"
+                       [(ngModel)]="entity.vezetekNev"/>
+            </div>
+            <label class="form-control-label col-lg-5">Keresztnév</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="kereszt" name="kereszt"
+                       [(ngModel)]="entity.keresztkNev"/>
             </div>
             <div class="form-group">
-                <label class="form-control-label"> Megyék</label>
+                <label class="form-control-label"> Beosztás</label>
                 <ng-select
-                    required
-                    [items]="megyeList"
-                    bindLabel="megyeNev"
-                    name="megyeList"
+                    [items]="beosztasok"
+                    bindLabel="beosztasNev"
+                    name="beosztasok"
                     [multiple]="false"
                     [closeOnSelect]="true"
                     [hideSelected]="true"
-                    [(ngModel)]="entity.megye">
+                    [(ngModel)]="entity.beosztas">
                 </ng-select>
             </div>
-            <label class="form-control-label col-lg-5" for="telepules">Település</label>
             <div class="form-group">
-                <input type="text" class="form-control" required id="telepules" name="telepules"
-                       [(ngModel)]="entity.telepules"/>
+                <label class="form-control-label"> Telephely</label>
+                <ng-select
+                    [items]="telephelyek"
+                    bindLabel="nev"
+                    name="telephelyek"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    [(ngModel)]="entity.telephely">
+                </ng-select>
             </div>
-            <label class="form-control-label col-lg-5">Működés kezdete</label>
+            <label class="form-control-label col-lg-5" for="lakhely">Lakhely</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="lakhely" name="lakhely"
+                       [(ngModel)]="entity.lakhely"/>
+            </div>
+            <label class="form-control-label col-lg-5">Születési idő</label>
             <div class="col-xs-12 col-12 col-md-4 form-group">
                 <input type="text"
                        placeholder="Datepicker"
                        class="form-control"
-                       [(ngModel)]="entity.mukodesKezdete"
+                       [(ngModel)]="entity.szulIdo"
                        [ngModelOptions]="{standalone: true}"
                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                        bsDatepicker>
@@ -56,15 +72,20 @@
                 <input type="text" class="form-control" required id="telefonszam" name="telefonszam"
                        [(ngModel)]="entity.telefonSzam"/>
             </div>
-            <label class="form-control-label col-lg-5" for="email">Email cím</label>
+            <label class="form-control-label col-lg-5" for="fizetes">Fizetés</label>
             <div class="form-group">
-                <input type="text" class="form-control" required id="email" name="email"
-                       [(ngModel)]="entity.email"/>
+                <input type="number" class="form-control" required id="fizetes" name="fizetes"
+                       [(ngModel)]="entity.fizetes"/>
             </div>
-            <label class="form-control-label col-lg-5" for="fax">Fax</label>
-            <div class="form-group">
-                <input type="text" class="form-control" required id="fax" name="fax"
-                       [(ngModel)]="entity.fax"/>
+            <label class="form-control-label col-lg-5">Munkaviszony kezdete</label>
+            <div class="col-xs-12 col-12 col-md-4 form-group">
+                <input type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       [(ngModel)]="entity.munkaViszonyKezdete"
+                       [ngModelOptions]="{standalone: true}"
+                       [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                       bsDatepicker>
             </div>
         </div>
         <div class="modal-footer">

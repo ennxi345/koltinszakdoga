@@ -3,49 +3,55 @@
         <div class="col-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span>Telephely kereső</span>
+                    <span>Dolgozó kereső</span>
                 </div>
                 <form class="panel-body" (ngSubmit)="onSearch()">
                     <div class="row mt-2 ">
                         <div class="col-6">
-                            <label class="mb-2 form-control-label" for="filterNev">Ügyfél név</label>
-                            <input type="text" [(ngModel)]="telephely.nev"
+                            <label class="mb-2 form-control-label" for="filterVezetekNev">Vezetéknév</label>
+                            <input type="text" [(ngModel)]="dolgozo.vezetekNev"
                                    class="form-control"
-                                   id="filterNev" name="filterNev"
-                                   placeholder="Ügyfél név">
+                                   id="filterVezetekNev" name="filterVezetekNev"
+                                   placeholder="Vezetéknév">
                         </div>
                         <div class="col-6">
-                            <label class="mb-2 form-control-label" for="filterNev">Település neve</label>
-                            <input type="text" [(ngModel)]="telephely.telepules"
+                            <label class="mb-2 form-control-label" for="filterKeresztNev">Keresztnév</label>
+                            <input type="text" [(ngModel)]="dolgozo.keresztkNev"
                                    class="form-control"
-                                   id="filterTelepules" name="filterTelepules"
-                                   placeholder="Település neve">
+                                   id="filterKeresztNev" name="filterKeresztNev"
+                                   placeholder="Keresztnév">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            <label class="form-control-label"> Megyék</label>
+                            <label class="form-control-label"> Telephely</label>
                             <ng-select
-                                [items]="megyeList"
-                                bindLabel="megyeNev"
-                                name="megyeList"
+                                [items]="telephelyek"
+                                bindLabel="nev"
+                                name="telephelyek"
                                 [multiple]="false"
-                                (change) = "megyeChange()"
+                                (change) = "telepulesChange()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
-                                [(ngModel)]="telephely.megye">
+                                [(ngModel)]="dolgozo.telephely">
                             </ng-select>
                         </div>
                         <div class="col-6">
-                            <label class="mb-2 form-control-label" for="filterNev">Cím</label>
-                            <input type="text" [(ngModel)]="telephely.cim"
-                                   class="form-control"
-                                   id="filterCim" name="filterCim"
-                                   placeholder="Cím">
+                            <label class="form-control-label"> Beosztás</label>
+                            <ng-select
+                                [items]="beosztasok"
+                                bindLabel="beosztasNev"
+                                name="beosztasok"
+                                [multiple]="false"
+                                (change) = "beosztasChange()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="dolgozo.beosztas">
+                            </ng-select>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <label class="form-control-label col-lg-12">Működés kezdete</label>
+                        <label class="form-control-label col-lg-12">Munkaviszony kezdete</label>
                         <div class="col-xs-12 col-12 col-md-4 form-group">
                             <input class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                                    [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
@@ -72,11 +78,10 @@
         </div>
     </div>
     <div class="row mt-4">
-        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új
-            székhely
+        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'dolgozo/edit'} }]">Új dolgozó felvétele
         </button>
     </div>
 </div>
 
-<jhi-table-builder #table [columns]="columns" [url]="'telephely'" [eventName]="'telephelyList-modification'" [queryParams]="queryParams"></jhi-table-builder>
+<jhi-table-builder #table [columns]="columns" [url]="'dolgozo'" [eventName]="'dolgozoList-modification'" [queryParams]="queryParams"></jhi-table-builder>
 
