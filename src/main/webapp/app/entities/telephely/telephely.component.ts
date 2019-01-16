@@ -37,10 +37,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         protected dateHelper: JhiDateUtils
     ) {
         this.telephely = new Telephely();
-        this.megyeId = null;
-        this.telephely.nev = null;
-        this.telephely.telepules = null;
-        this.telephely.cim = null;
         this.bsRangeValue = [new Date(), new Date()];
     }
 
@@ -117,6 +113,11 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     clearSearch() {
+        this.megyeId = null;
+        this.telephely.nev = null;
+        this.telephely.telepules = null;
+        this.telephely.cim = null;
+        this.bsRangeValue = [new Date(), new Date()];
         this.router.navigateByUrl('/telephely');
         if (this.table) {
             this.table.queryParams = null;

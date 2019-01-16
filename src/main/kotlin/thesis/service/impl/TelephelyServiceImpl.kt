@@ -73,14 +73,6 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
         return specification
     }
 
-/*    fun joinMegye(input: LongFilter): Specification<Telephely> {
-        return Specification<Telephely> { root, query, cb ->
-            val join = root
-                .join(Telephely_.megye, JoinType.LEFT)
-            cb.equal(join.get(Megye_.id), input.equals)
-        }
-    }*/
-
     fun joinMegye(input: Long?): Specification<Telephely> {
         return Specification<Telephely> { root, query, cb ->
             val telephelyMegye = root.join<Megye, Telephely>("megye")

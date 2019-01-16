@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { JhiAlertService, JhiDateUtils, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
-import { Megye } from 'app/entities/megye/megye.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -39,6 +38,8 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         protected dateHelper: JhiDateUtils
     ) {
         this.dolgozo = new Dolgozo();
+        this.dolgozo.vezetekNev = null;
+        this.bsRangeValue = [new Date(), new Date()];
     }
 
     ngOnInit() {
@@ -72,6 +73,7 @@ export class DolgozoComponent implements OnInit, OnDestroy {
     telepulesChange() {
         this.telephelyId = this.dolgozo.telephely.id;
     }
+
     beosztasChange() {
         this.beosztasId = this.dolgozo.beosztas.id;
     }
@@ -81,7 +83,49 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
     }
 
+    onSearch() {
+        if (this.bsRangeValue) {
+            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
+            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
+        }
+
+        this.queryParams = [
+            { searchFilter: 'vezetekNev.contains', fieldValue: this.dolgozo.vezetekNev },
+            {
+                searchFilter: 'keresztkNev.contains',
+                fieldValue: this.dolgozo.keresztkNev
+            },
+            { searchFilter: 'telephelyId.contains', fieldValue: this.telephelyId },
+            { searchFilter: 'beosztasId.equals', fieldValue: this.beosztasId },
+            {
+                searchFilter: 'munkaViszonyKezdeteK.greaterOrEqualThan',
+                fieldValue: new Date(this.bsRangeValue[0])
+                    .toISOString()
+                    .substring(0, 10)
+                    .split('T')[0]
+            },
+            {
+                searchFilter: 'munkaViszonyKezdeteV.lessOrEqualThan',
+                fieldValue: new Date(this.bsRangeValue[1])
+                    .toISOString()
+                    .substring(0, 10)
+                    .split('T')[0]
+            }
+        ];
+        if (this.table) {
+            this.table.queryParams = this.queryParams;
+            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() - 1);
+            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() - 1);
+            this.table.loadAll();
+        }
+    }
+
     clearSearch() {
+        this.dolgozo.vezetekNev = null;
+        this.dolgozo.keresztkNev = null;
+        this.beosztasId = null;
+        this.telephelyId = null;
+        this.bsRangeValue = [new Date(), new Date()];
         this.router.navigateByUrl('/dolgozo');
         if (this.table) {
             this.table.queryParams = null;
