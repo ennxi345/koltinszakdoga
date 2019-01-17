@@ -4,5 +4,5 @@ import thesis.service.dto.BeosztasDTO
 
 interface BeosztasService {
 
-    fun getAll() : List<BeosztasDTO>;
+    fun getAll(): List<BeosztasDTO>;
 }
