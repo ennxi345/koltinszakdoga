@@ -11,14 +11,14 @@ import thesis.entities.Dolgozo
 import thesis.entities.Dolgozo_
 import thesis.entities.Telephely
 import thesis.repository.DolgozoRepository
-import thesis.service.DolgozoService
+import thesis.service.CrudService
 import thesis.service.criteria.DolgozoCriteria
 import thesis.service.dto.DolgozoDTO
 import thesis.service.mapper.DolgozoMapper
 
 @Transactional
 @Service
-class DolgozoServiceImpl(val dolgozoRepository: DolgozoRepository, val mapper: DolgozoMapper) : DolgozoService, QueryService<Dolgozo>() {
+class DolgozoServiceImpl(val dolgozoRepository: DolgozoRepository, val mapper: DolgozoMapper) : CrudService<DolgozoDTO, DolgozoCriteria, Dolgozo>, QueryService<Dolgozo>() {
 
     override fun getAll(): List<DolgozoDTO> {
         return dolgozoRepository.findAll().map(mapper::toDto)

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import thesis.entities.*
 import thesis.repository.GepRepository
-import thesis.service.EntityService
+import thesis.service.CrudService
 import thesis.service.criteria.GepCriteria
 import thesis.service.dto.GepDTO
 import thesis.service.mapper.GepMapper
 
 @Service
-class GepServiceImpl(val gepRepository: GepRepository, val mapper: GepMapper) : EntityService<GepDTO, GepCriteria, Gep>, QueryService<Gep>() {
+class GepServiceImpl(val gepRepository: GepRepository, val mapper: GepMapper) : CrudService<GepDTO, GepCriteria, Gep>, QueryService<Gep>() {
 
     override fun getAll(): List<GepDTO> {
         return gepRepository.findAll().map(mapper::toDto)

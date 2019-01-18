@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import thesis.constants.Constant
-import thesis.service.MarkaService
+import thesis.service.KodtarCrudService
 import thesis.service.dto.MarkaDTO
 
 @RestController
 @RequestMapping(Constant.API_BASE_URL)
-class MarkaResource(val markaService: MarkaService) {
+class MarkaResource(val service: KodtarCrudService<MarkaDTO>) {
 
     companion object {
         const val ENTITY_URL: String = "/marka"
@@ -18,6 +18,6 @@ class MarkaResource(val markaService: MarkaService) {
 
     @GetMapping(ENTITY_URL + "/all")
     fun getAll(): ResponseEntity<List<MarkaDTO>> {
-        return ResponseEntity.ok(markaService.getAll());
+        return ResponseEntity.ok(service.getAll());
     }
 }

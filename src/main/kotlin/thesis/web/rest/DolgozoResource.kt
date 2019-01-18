@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import thesis.constants.Constant
-import thesis.service.DolgozoService
+import thesis.entities.Dolgozo
+import thesis.service.CrudService
 import thesis.service.criteria.DolgozoCriteria
 import thesis.service.dto.DolgozoDTO
 import thesis.web.rest.util.PaginationUtil
@@ -14,7 +15,7 @@ import java.net.URI
 
 @RestController
 @RequestMapping(Constant.API_BASE_URL)
-class DolgozoResource(val service: DolgozoService) {
+class DolgozoResource(val service: CrudService<DolgozoDTO, DolgozoCriteria, Dolgozo>) {
 
     companion object {
         const val ENTITY_URL: String = "/dolgozo"

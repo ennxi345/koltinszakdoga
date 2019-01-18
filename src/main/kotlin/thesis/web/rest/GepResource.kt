@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import thesis.constants.Constant
 import thesis.entities.Gep
-import thesis.service.EntityService
+import thesis.service.CrudService
 import thesis.service.criteria.GepCriteria
 import thesis.service.dto.GepDTO
 import thesis.web.rest.util.PaginationUtil
@@ -15,7 +15,7 @@ import java.net.URI
 
 @RestController
 @RequestMapping(Constant.API_BASE_URL)
-class GepResource(val service: EntityService<GepDTO, GepCriteria, Gep>) {
+class GepResource(val service: CrudService<GepDTO, GepCriteria, Gep>) {
 
     companion object {
         const val ENTITY_URL: String = "/gep"

@@ -10,14 +10,14 @@ import thesis.entities.Megye
 import thesis.entities.Telephely
 import thesis.entities.Telephely_
 import thesis.repository.TelephelyRepository
-import thesis.service.TelephelyService
+import thesis.service.CrudService
 import thesis.service.criteria.TelephelyCriteria
 import thesis.service.dto.TelephelyDTO
 import thesis.service.mapper.TelephelyMapper
 
 @Transactional
 @Service
-class TelephelyServiceImpl(val mapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService, QueryService<Telephely>() {
+class TelephelyServiceImpl(val mapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : CrudService<TelephelyDTO, TelephelyCriteria, Telephely>, QueryService<Telephely>() {
 
     override fun getAll(): List<TelephelyDTO> {
         return telephelyRepository.findAll().map(mapper::toDto)

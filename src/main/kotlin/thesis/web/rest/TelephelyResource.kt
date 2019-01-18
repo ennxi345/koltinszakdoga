@@ -1,23 +1,22 @@
 package thesis.web.rest
 
+import io.swagger.annotations.ApiParam
 import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import thesis.constants.Constant
-import thesis.service.TelephelyService
-import thesis.service.dto.TelephelyDTO
-import java.net.URI
-import com.sun.awt.SecurityWarning.getSize
-import io.swagger.annotations.ApiParam
-import org.springframework.data.domain.Page
+import thesis.entities.Telephely
+import thesis.service.CrudService
 import thesis.service.criteria.TelephelyCriteria
+import thesis.service.dto.TelephelyDTO
 import thesis.web.rest.util.PaginationUtil
+import java.net.URI
 
 
 @RestController
 @RequestMapping(Constant.API_BASE_URL)
-class TelephelyResource(val service: TelephelyService) {
+class TelephelyResource(val service: CrudService<TelephelyDTO, TelephelyCriteria, Telephely>) {
 
     companion object {
         const val ENTITY_URL: String = "/telephely"

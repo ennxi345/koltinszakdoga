@@ -3,7 +3,7 @@ package thesis.service
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
-interface EntityService<D, C, E> {
+interface CrudService<D, C, E> {
     fun getAll(): List<D>
 
     fun query(criteria: C, pageable: Pageable): Page<D>

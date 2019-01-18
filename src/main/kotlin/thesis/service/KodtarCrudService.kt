@@ -2,6 +2,7 @@ package thesis.service
 
 import thesis.service.dto.MarkaDTO
 
-interface MarkaService {
-    fun getAll(): List<MarkaDTO>
+interface KodtarCrudService<D> {
+
+    fun getAll(): List<D>
 }
