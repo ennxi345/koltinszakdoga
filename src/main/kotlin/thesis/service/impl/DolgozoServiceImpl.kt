@@ -18,20 +18,20 @@ import thesis.service.mapper.DolgozoMapper
 
 @Transactional
 @Service
-class DolgozoServiceImpl(val dolgozoRepository: DolgozoRepository, val dolgozoMapper: DolgozoMapper) : DolgozoService, QueryService<Dolgozo>() {
+class DolgozoServiceImpl(val dolgozoRepository: DolgozoRepository, val mapper: DolgozoMapper) : DolgozoService, QueryService<Dolgozo>() {
 
     override fun getAll(): List<DolgozoDTO> {
-        return dolgozoMapper.convertToDtoList(dolgozoRepository.findAll())
+        return dolgozoRepository.findAll().map(mapper::toDto)
     }
 
     override fun getById(id: Long): DolgozoDTO {
-        return dolgozoMapper.convertToDto(dolgozoRepository.getOne(id))
+        return mapper.toDto(dolgozoRepository.getOne(id))
     }
 
     @Transactional
     override fun save(dolgozoDTO: DolgozoDTO): DolgozoDTO {
-        var entity: Dolgozo = dolgozoMapper.convertToEntity(dolgozoDTO)
-        return dolgozoMapper.convertToDto(dolgozoRepository.save(entity))
+        var entity: Dolgozo = mapper.toEntity(dolgozoDTO)
+        return mapper.toDto(dolgozoRepository.save(entity))
     }
 
     override fun deleteById(id: Long) {
@@ -45,7 +45,7 @@ class DolgozoServiceImpl(val dolgozoRepository: DolgozoRepository, val dolgozoMa
     @Transactional
     override fun query(criteria: DolgozoCriteria, pageable: Pageable): Page<DolgozoDTO> {
         var specification = createSpecification(criteria)
-        return dolgozoRepository.findAll(specification, pageable).map(dolgozoMapper::convertToDto)
+        return dolgozoRepository.findAll(specification, pageable).map(mapper::toDto)
     }
 
     fun createSpecification(criteria: DolgozoCriteria): Specification<Dolgozo> {

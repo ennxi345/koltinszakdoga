@@ -9,8 +9,8 @@ import thesis.service.mapper.GepTipusMapper
 
 @Transactional
 @Service
-class GepTipusServiceImpl(val gepTipusMapper: GepTipusMapper, val gepTipusRepository: GepTipusRepository) : GepTipusService {
+class GepTipusServiceImpl(val mapper: GepTipusMapper, val gepTipusRepository: GepTipusRepository) : GepTipusService {
     override fun getAll(): List<GepTipusDTO> {
-        return gepTipusMapper.convertToDtoList(gepTipusRepository.findAll())
+        return gepTipusRepository.findAll().map(mapper::toDto)
     }
 }

@@ -9,10 +9,10 @@ import thesis.service.mapper.MegyeMapper
 
 @Service
 @Transactional
-class MegyeServiceImpl(val megyeRepository: MegyeRepository, val megyeMapper: MegyeMapper) : MegyeService {
+class MegyeServiceImpl(val megyeRepository: MegyeRepository, val mapper: MegyeMapper) : MegyeService {
 
     @Transactional(readOnly = true)
     override fun getAll(): List<MegyeDTO> {
-        return megyeMapper.convertToDtoList(megyeRepository.findAll())
+        return megyeRepository.findAll().map(mapper::toDto)
     }
 }

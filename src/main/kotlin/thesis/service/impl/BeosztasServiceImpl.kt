@@ -9,10 +9,10 @@ import thesis.service.mapper.BeosztasMapper
 
 @Service
 @Transactional
-class BeosztasServiceImpl(val beosztasRepository: BeosztasRepository, val beosztasMapper: BeosztasMapper) : BeosztasService{
+class BeosztasServiceImpl(val beosztasRepository: BeosztasRepository, val mapper: BeosztasMapper) : BeosztasService {
 
     @Transactional(readOnly = true)
     override fun getAll(): List<BeosztasDTO> {
-        return beosztasMapper.convertToDtoList(beosztasRepository.findAll())
+        return beosztasRepository.findAll().map(mapper::toDto)
     }
 }

@@ -14,20 +14,20 @@ import thesis.service.dto.GepDTO
 import thesis.service.mapper.GepMapper
 
 @Service
-class GepServiceImpl(val gepRepository: GepRepository, val gepMapper: GepMapper) : EntityService<GepDTO, GepCriteria, Gep>, QueryService<Gep>() {
+class GepServiceImpl(val gepRepository: GepRepository, val mapper: GepMapper) : EntityService<GepDTO, GepCriteria, Gep>, QueryService<Gep>() {
 
     override fun getAll(): List<GepDTO> {
-        return gepMapper.toDto(gepRepository.findAll())
+        return gepRepository.findAll().map(mapper::toDto)
     }
 
     override fun getById(id: Long): GepDTO {
-        return gepMapper.toDto(gepRepository.getOne(id))
+        return mapper.toDto(gepRepository.getOne(id))
     }
 
     @Transactional
     override fun save(dolgozoDTO: GepDTO): GepDTO {
-        var entity: Gep = gepMapper.toEntity(dolgozoDTO)
-        return gepMapper.toDto(gepRepository.save(entity))
+        var entity: Gep = mapper.toEntity(dolgozoDTO)
+        return mapper.toDto(gepRepository.save(entity))
     }
 
     override fun deleteById(id: Long) {
@@ -41,7 +41,7 @@ class GepServiceImpl(val gepRepository: GepRepository, val gepMapper: GepMapper)
     @Transactional
     override fun query(criteria: GepCriteria, pageable: Pageable): Page<GepDTO> {
         var specification = createSpecification(criteria)
-        return gepRepository.findAll(specification, pageable).map(gepMapper::toDto)
+        return gepRepository.findAll(specification, pageable).map(mapper::toDto)
     }
 
     fun createSpecification(criteria: GepCriteria): Specification<Gep> {

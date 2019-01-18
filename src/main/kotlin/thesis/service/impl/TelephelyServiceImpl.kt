@@ -17,20 +17,20 @@ import thesis.service.mapper.TelephelyMapper
 
 @Transactional
 @Service
-class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService, QueryService<Telephely>() {
+class TelephelyServiceImpl(val mapper: TelephelyMapper, val telephelyRepository: TelephelyRepository) : TelephelyService, QueryService<Telephely>() {
 
     override fun getAll(): List<TelephelyDTO> {
-        return telephelyMapper.convertToDtoList(telephelyRepository.findAll())
+        return telephelyRepository.findAll().map(mapper::toDto)
     }
 
     override fun getById(id: Long): TelephelyDTO {
-        return telephelyMapper.convertToDto(telephelyRepository.getOne(id))
+        return mapper.toDto(telephelyRepository.getOne(id))
     }
 
     @Transactional
     override fun save(telephelyDTO: TelephelyDTO): TelephelyDTO {
-        var entity: Telephely = telephelyMapper.convertToEntity(telephelyDTO)
-        return telephelyMapper.convertToDto(telephelyRepository.save(entity))
+        var entity: Telephely = mapper.toEntity(telephelyDTO)
+        return mapper.toDto(telephelyRepository.save(entity))
     }
 
     override fun deleteById(id: Long) {
@@ -44,7 +44,7 @@ class TelephelyServiceImpl(val telephelyMapper: TelephelyMapper, val telephelyRe
     @Transactional
     override fun query(criteria: TelephelyCriteria, pageable: Pageable): Page<TelephelyDTO> {
         var specification = createSpecification(criteria)
-        return telephelyRepository.findAll(specification, pageable).map(telephelyMapper::convertToDto)
+        return telephelyRepository.findAll(specification, pageable).map(mapper::toDto)
     }
 
     fun createSpecification(criteria: TelephelyCriteria): Specification<Telephely> {
