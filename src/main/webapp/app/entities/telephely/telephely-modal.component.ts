@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Telephely } from 'app/entities/telephely/telephely.model';
-import { Megye } from 'app/entities/megye/megye.model';
+import { Megye } from 'app/models/megye.model';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { ActivatedRoute, Router } from '@angular/router';

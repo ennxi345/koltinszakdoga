@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { JhiAlertService, JhiDateUtils, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { Telephely } from 'app/entities/telephely/telephely.model';
-import { Megye } from 'app/entities/megye/megye.model';
+import { Megye } from 'app/models/megye.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';

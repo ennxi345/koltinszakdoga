@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Telephely } from 'app/entities/telephely/telephely.model';
-import { Megye } from 'app/entities/megye/megye.model';
+import { Megye } from 'app/models/megye.model';
 import { Subscription } from 'rxjs';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TableBuilderComponent } from 'app/entities/abstract/component/table-builder.component';
 import { Dolgozo } from 'app/entities/dolgozo/dolgozo.model';
-import { Beosztas } from 'app/entities/beosztas/beosztas.model';
+import { Beosztas } from 'app/models/beosztas.model';
 import { Telephely } from 'app/entities/telephely/telephely.model';
 
 @Component({

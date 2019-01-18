@@ -1,4 +1,4 @@
-import { Megye } from 'app/entities/megye/megye.model';
+import { Megye } from 'app/models/megye.model';
 
 export class Telephely {
     constructor(

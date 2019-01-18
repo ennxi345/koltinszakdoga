@@ -12,6 +12,8 @@
     <include file="config/liquibase/changelog/20190115203000_init_dolgozok.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190116020100_init_geptip.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190117224900_init_gep_tipusok.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190118012000_init_marka.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190118013600_init_gep.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

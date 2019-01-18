@@ -10,6 +10,6 @@ import thesis.service.mapper.MarkaMapper
 class MarkaServiceImpl(val markaRepository: MarkaRepository, val markaMapper: MarkaMapper): MarkaService{
 
     override fun getAll(): List<MarkaDTO> {
-        return markaRepository.findAll().map(markaMapper::convertToDto)
+        return markaMapper.convertToDtoList(markaRepository.findAll())
     }
 }

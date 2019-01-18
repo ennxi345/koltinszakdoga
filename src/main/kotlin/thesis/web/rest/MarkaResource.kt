@@ -16,7 +16,7 @@ class MarkaResource(val markaService: MarkaService) {
         const val ENTITY_URL: String = "/marka"
     }
 
-    @GetMapping(GepTipusResource.ENTITY_URL + "/all")
+    @GetMapping(ENTITY_URL + "/all")
     fun getAll(): ResponseEntity<List<MarkaDTO>> {
         return ResponseEntity.ok(markaService.getAll());
     }

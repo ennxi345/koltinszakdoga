@@ -1,5 +1,5 @@
 import { Telephely } from 'app/entities/telephely/telephely.model';
-import { Beosztas } from 'app/entities/beosztas/beosztas.model';
+import { Beosztas } from 'app/models/beosztas.model';
 
 export class Dolgozo {
     constructor(

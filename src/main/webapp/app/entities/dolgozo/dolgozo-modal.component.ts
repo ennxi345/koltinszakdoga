@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Telephely } from 'app/entities/telephely/telephely.model';
-import { Megye } from 'app/entities/megye/megye.model';
+import { Megye } from 'app/models/megye.model';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 import { EntityService } from '../../../entity.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { PopupComponent } from 'app/entities/abstract/service/popup.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Dolgozo } from 'app/entities/dolgozo/dolgozo.model';
-import { Beosztas } from 'app/entities/beosztas/beosztas.model';
+import { Beosztas } from 'app/models/beosztas.model';
 
 @Component({
     selector: 'jhi-dolgozo-modal',
