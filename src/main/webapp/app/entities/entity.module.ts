@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { EntityService } from '../../entity.service';
-import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
 import { RouterModule } from '@angular/router';
 import { entityPopupRoute, entityRoute } from 'app/entities/entity.route';
 import { TelephelyComponent } from 'app/entities/telephely/telephely.component';
@@ -31,7 +30,6 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
     ],
     declarations: [
-        VehicleComponent,
         TelephelyComponent,
         TelephelyModalComponent,
         DeleteDialogComponent,

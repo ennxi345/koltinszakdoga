@@ -19,8 +19,8 @@ export class GepComponent implements OnInit, OnDestroy {
     gepTipus: GepTipus;
     marka: Marka;
     gep: Gep;
-    mukodesKezdeteK = new Date();
-    mukodesKezdeteV = new Date();
+    mukodesKezdeteK: string;
+    mukodesKezdeteV: string;
     telephelyId: number;
     geptipId: number;
     markaId: number;
@@ -49,7 +49,7 @@ export class GepComponent implements OnInit, OnDestroy {
         this.telephely = new Telephely();
         this.gepTipus = new GepTipus();
         this.marka = new Marka();
-        this.bsRangeValue = [new Date(), new Date()];
+        this.bsRangeValue = null;
     }
 
     ngOnInit() {
@@ -81,27 +81,42 @@ export class GepComponent implements OnInit, OnDestroy {
         this.router.navigate(['gep', id, 'delete']);
     }
 
-    mukodesDatumChange() {
-        this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
-        this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
+    mukodesDatumChange(event) {
+        event[0].setDate(event[0].getDate() + 1);
+        event[1].setDate(event[1].getDate() + 1);
+
+        this.mukodesKezdeteK = new Date(event[0])
+            .toISOString()
+            .substring(0, 10)
+            .split('T')[0];
+        this.mukodesKezdeteV = new Date(event[1])
+            .toISOString()
+            .substring(0, 10)
+            .split('T')[0];
+
+        event[0].setDate(event[0].getDate() - 1);
+        event[1].setDate(event[1].getDate() - 1);
     }
 
     markaChange() {
-        this.markaId = this.gep.marka.id;
+        if (this.gep.marka.id) {
+            this.markaId = this.gep.marka.id;
+        }
     }
+
     gepTipChange() {
-        this.geptipId = this.gep.gepTipus.id;
+        if (this.gep.gepTipus.id) {
+            this.geptipId = this.gep.gepTipus.id;
+        }
     }
+
     telephelyChange() {
-        this.telephelyId = this.gep.telephely.id;
+        if (this.gep.telephely.id) {
+            this.telephelyId = this.gep.telephely.id;
+        }
     }
 
     onSearch() {
-        if (this.bsRangeValue) {
-            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
-            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
-        }
-
         this.queryParams = [
             { searchFilter: 'nev.contains', fieldValue: this.telephely.nev },
             {
@@ -113,23 +128,15 @@ export class GepComponent implements OnInit, OnDestroy {
             { searchFilter: 'geptipId.equals', fieldValue: this.geptipId },
             {
                 searchFilter: 'mukodesKezdeteK.greaterOrEqualThan',
-                fieldValue: new Date(this.bsRangeValue[0])
-                    .toISOString()
-                    .substring(0, 10)
-                    .split('T')[0]
+                fieldValue: this.mukodesKezdeteK
             },
             {
                 searchFilter: 'mukodesKezdeteV.lessOrEqualThan',
-                fieldValue: new Date(this.bsRangeValue[1])
-                    .toISOString()
-                    .substring(0, 10)
-                    .split('T')[0]
+                fieldValue: this.mukodesKezdeteV
             }
         ];
         if (this.table) {
             this.table.queryParams = this.queryParams;
-            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() - 1);
-            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() - 1);
             this.table.loadAll();
         }
     }
@@ -139,7 +146,7 @@ export class GepComponent implements OnInit, OnDestroy {
         this.markaId = null;
         this.telephelyId = null;
         this.gep.nev = null;
-        this.bsRangeValue = [new Date(), new Date()];
+        this.bsRangeValue = null;
         this.router.navigateByUrl('/gep');
         if (this.table) {
             this.table.queryParams = null;

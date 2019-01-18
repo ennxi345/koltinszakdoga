@@ -25,6 +25,9 @@ export class DolgozoComponent implements OnInit, OnDestroy {
     url = 'api/telephely';
     eventSubscriber: Subscription;
 
+    munkaViszonyKezdeteK: string;
+    munkaViszonyKezdeteV: string;
+
     @ViewChild('table') table: TableBuilderComponent;
     queryParams: any;
 
@@ -38,8 +41,6 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         protected dateHelper: JhiDateUtils
     ) {
         this.dolgozo = new Dolgozo();
-        this.dolgozo.vezetekNev = null;
-        this.bsRangeValue = [new Date(), new Date()];
     }
 
     ngOnInit() {
@@ -49,7 +50,7 @@ export class DolgozoComponent implements OnInit, OnDestroy {
             { prop: 'vezetekNev', name: 'Vezetéknév', sort: 'vezetekNev' },
             { prop: 'keresztkNev', name: 'Keresztnév', sort: 'keresztkNev' },
             { prop: 'beosztas.beosztasNev', name: 'Beosztás', sort: 'beosztas.beosztasNev' },
-            { prop: 'telephely.nev', name: 'Beosztás', sort: 'telephely.nev' },
+            { prop: 'telephely.nev', name: 'Telephely', sort: 'telephely.nev' },
             { prop: 'szulIdo', name: 'Születési dátum' },
             { prop: 'munkaViszonyKezdete', name: 'Munkaviszony kezdete' }
         ];
@@ -71,51 +72,54 @@ export class DolgozoComponent implements OnInit, OnDestroy {
     }
 
     telepulesChange() {
-        this.telephelyId = this.dolgozo.telephely.id;
+        if (this.dolgozo.telephely.id) {
+            this.telephelyId = this.dolgozo.telephely.id;
+        }
     }
 
     beosztasChange() {
-        this.beosztasId = this.dolgozo.beosztas.id;
+        if (this.dolgozo.beosztas.id) {
+            this.beosztasId = this.dolgozo.beosztas.id;
+        }
     }
 
-    mukodesDatumChange() {
-        this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
-        this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
+    munkaviszonyDateChange(event) {
+        event[0].setDate(event[0].getDate() + 1);
+        event[1].setDate(event[1].getDate() + 1);
+
+        this.munkaViszonyKezdeteK = new Date(event[0])
+            .toISOString()
+            .substring(0, 10)
+            .split('T')[0];
+        this.munkaViszonyKezdeteV = new Date(event[1])
+            .toISOString()
+            .substring(0, 10)
+            .split('T')[0];
+
+        event[0].setDate(event[0].getDate() - 1);
+        event[1].setDate(event[1].getDate() - 1);
     }
 
     onSearch() {
-        if (this.bsRangeValue) {
-            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() + 1);
-            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() + 1);
-        }
-
         this.queryParams = [
             { searchFilter: 'vezetekNev.contains', fieldValue: this.dolgozo.vezetekNev },
             {
                 searchFilter: 'keresztkNev.contains',
                 fieldValue: this.dolgozo.keresztkNev
             },
-            { searchFilter: 'telephelyId.contains', fieldValue: this.telephelyId },
+            { searchFilter: 'telephelyId.equals', fieldValue: this.telephelyId },
             { searchFilter: 'beosztasId.equals', fieldValue: this.beosztasId },
             {
                 searchFilter: 'munkaViszonyKezdeteK.greaterOrEqualThan',
-                fieldValue: new Date(this.bsRangeValue[0])
-                    .toISOString()
-                    .substring(0, 10)
-                    .split('T')[0]
+                fieldValue: this.munkaViszonyKezdeteK
             },
             {
                 searchFilter: 'munkaViszonyKezdeteV.lessOrEqualThan',
-                fieldValue: new Date(this.bsRangeValue[1])
-                    .toISOString()
-                    .substring(0, 10)
-                    .split('T')[0]
+                fieldValue: this.munkaViszonyKezdeteV
             }
         ];
         if (this.table) {
             this.table.queryParams = this.queryParams;
-            this.bsRangeValue[0].setDate(this.bsRangeValue[0].getDate() - 1);
-            this.bsRangeValue[1].setDate(this.bsRangeValue[1].getDate() - 1);
             this.table.loadAll();
         }
     }
@@ -125,7 +129,7 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         this.dolgozo.keresztkNev = null;
         this.beosztasId = null;
         this.telephelyId = null;
-        this.bsRangeValue = [new Date(), new Date()];
+        this.bsRangeValue = null;
         this.router.navigateByUrl('/dolgozo');
         if (this.table) {
             this.table.queryParams = null;

@@ -48,7 +48,7 @@
                         <label class="form-control-label col-lg-12">Működés kezdete</label>
                         <div class="col-xs-12 col-12 col-md-4 form-group">
                             <input class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
-                                   [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
+                                   [ngModelOptions]="{standalone: true}" (bsValueChange)="mukodesDatumChange($event)" placement="right" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
                         </div>
                         <div class="col-xs-12 col-12 col-md-3 form-group">
                             <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen">Date Range Picker</button>

@@ -60,7 +60,7 @@
                     <div class="row mt-2">
                             <label class="form-control-label col-lg-12">Cég tulajdonában</label>
                             <div class="col-xs-12 col-12 col-md-4 form-group">
-                                <input class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                                <input class="form-control" placement="right" (bsValueChange)="mukodesDatumChange($event)" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                                        [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
                             </div>
                             <div class="col-xs-12 col-12 col-md-3 form-group">

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { VehicleComponent } from 'app/entities/vehicle/vehicle.component';
 import { TelephelyComponent } from 'app/entities/telephely/telephely.component';
 import { DeleteDialogPopupComponent } from 'app/entities/abstract/component/delete-dialog.component';
 import { TelephelyModalPopupComponent } from 'app/entities/telephely/telephely-modal.component';
@@ -9,10 +8,6 @@ import { GepComponent } from 'app/entities/gep/gep.component';
 import { GepModalPopupComponent } from 'app/entities/gep/gep-modal.component';
 
 export const entityRoute: Routes = [
-    {
-        path: 'vehicle',
-        component: VehicleComponent
-    },
     {
         path: 'telephely',
         component: TelephelyComponent
