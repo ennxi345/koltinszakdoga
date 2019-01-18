@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181211004000_init_megye.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181211011500_insert_megyek.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181211004000_init_telephely.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190115163000_init_beosztas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190115203000_init_dolgozok.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190116020100_init_geptip.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190117224900_init_gep_tipusok.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190118012000_init_marka.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190118013600_init_gep.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<form name="deleteForm" #deleteForm="ngForm" (ngSubmit)="confirmDelete(entity.id)">
+    <div class="modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Delete</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <span>Biztosan törölni szeretné a ...</span>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="delete"  class="btn btn-danger">
+                <span>Törlés</span>
+            </button>
+            <button type="button" class="btn btn-default pull-right" aria-label="Close" (click)="cancel()">
+                <span>Vissza</span>
+            </button>
+        </div>
+        <jhi-alert></jhi-alert>
+    </div>
+</form>

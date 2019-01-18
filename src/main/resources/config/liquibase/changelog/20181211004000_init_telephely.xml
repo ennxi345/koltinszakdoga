@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20181211004000" author="ciprian">
+        <createTable tableName="telephely">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nev" type="varchar(100)"></column>
+            <column name="megye_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telepules" type="varchar(100)"></column>
+            <column name="iranyitoszam" type="smallint"></column>
+            <column name="cim" type="varchar(200)"></column>
+            <column name="telefonszam" type="varchar(50)"></column>
+            <column name="email" type="varchar(100)"></column>
+            <column name="fax" type="varchar(100)"></column>
+            <column name="mukodes_kezdete" type="date"></column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="megye_id"
+                                 baseTableName="telephely"
+                                 constraintName="fk_head_megye_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="megye"/>
+    </changeSet>
+</databaseChangeLog>

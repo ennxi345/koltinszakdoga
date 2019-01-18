@@ -1,0 +1,260 @@
+ngx-datatable.ngx-datatable {
+    font-size: 1rem;
+    border: solid 1px #ededed;
+    .datatable-header {
+        min-height: 40px !important;
+        height: 100% !important;
+        background: $color-gray-lighter;
+        .datatable-header-inner {
+            .datatable-header-cell {
+                padding: 0.25rem 0.5rem;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                font-weight: 500;
+                position: relative;
+                vertical-align: middle;
+                line-height: 1.375rem;
+                background-color: $color-gray-lighter;
+                white-space: normal !important;
+                min-height: 100% !important;
+
+                display: flex;
+                align-items: center;
+                .datatable-header-cell-template-wrap {
+                    display: flex;
+                }
+                &.dragging {
+                    border: 1px solid $color-gray;
+                    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    z-index: 9999999;
+                }
+                .datatable-header-cell-label {
+                    &:hover {
+                        color: $color-primary;
+                    }
+                    &:active {
+                        color: $header-hamb-color;
+                    }
+                }
+            }
+        }
+    }
+    .datatable-body {
+        .datatable-row-wrapper {
+            .operations {
+                white-space: nowrap;
+                span,
+                i {
+                    vertical-align: middle;
+                }
+                a {
+                    color: $color-gray-light !important;
+                    margin: -3px 0;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    width: 28px;
+                    height: 28px;
+                    display: inline-block;
+                    vertical-align: top;
+                    text-align: center;
+                    &:hover {
+                        color: $color !important;
+                        background: $color-primary-lighter !important;
+                    }
+                }
+            }
+            &:hover {
+                .operations {
+                    a {
+                        color: $color !important;
+                    }
+                }
+            }
+            .datatable-body-row.datatable-row-even {
+                background-color: transparent;
+            }
+            .datatable-body-row.datatable-row-odd {
+                background-color: $color-gray-pale;
+            }
+            .datatable-body-row {
+                vertical-align: top;
+                border-top: 1px solid $color-gray-lighter;
+                &:hover {
+                    background-color: $color-gray-ultra-light;
+                }
+                .datatable-body-cell {
+                    line-height: 1.5rem;
+                    padding: 1rem 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    .datatable-body-cell-label {
+                        display: block;
+                        min-width: 0;
+                        span {
+                            padding: 0;
+                        }
+                        &.emphasized {
+                            font-weight: 700;
+                        }
+                        &.secondary {
+                            color: $color-gray;
+                        }
+                        .operations {
+                            span {
+                                padding: unset;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .datatable-body-row.active {
+                background-color: $color-primary-pale;
+                .operations {
+                    a {
+                        color: $color !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .datatable-footer {
+        background: transparent;
+        .datatable-footer-inner {
+            display: flex;
+            text-align: right;
+            justify-content: flex-end;
+            .datatable-pager {
+                -webkit-box-flex: 1;
+                flex: none !important;
+                text-align: right;
+                display: inline-block;
+                a {
+                    border-radius: 0;
+                    padding: 0.5625rem 0.6875rem;
+                    font-size: 0.875rem;
+                    height: auto;
+                    line-height: 1rem;
+                    margin: 0;
+                    color: $color;
+                    background-color: $color-gray-pale;
+                    border: 0.0625rem solid $color-gray-light;
+                    margin-left: -0.0625rem;
+                    font-weight: 700;
+                    &:first-of-type {
+                        border-bottom-left-radius: 0.1875rem;
+                        border-top-left-radius: 0.1875rem;
+                    }
+                    &:last-of-type {
+                        border-bottom-right-radius: 0.1875rem;
+                        border-top-right-radius: 0.1875rem;
+                    }
+                }
+                ul {
+                    li {
+                        &:not(.disabled).active {
+                            a {
+                                background-color: $color-primary;
+                                border-color: $color-primary;
+                                cursor: default;
+                                color: #fff;
+                                &:hover {
+                                    color: #fff;
+                                    background-color: $color-primary;
+                                    border-color: $color-primary;
+                                    cursor: default;
+                                }
+                            }
+                        }
+                        &:not(.disabled) {
+                            a {
+                                &:active {
+                                    color: $color-gray-pale;
+                                    background-color: $color-gray-light;
+                                    -webkit-box-shadow: inset 0 0.125rem 0.125rem rgba(0, 0, 0, 0.15);
+                                    box-shadow: inset 0 0.125rem 0.125rem rgba(0, 0, 0, 0.15);
+                                }
+                            }
+                            &:hover {
+                                a {
+                                    background-color: #fff;
+                                    border-color: $color-gray-light;
+                                    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+                                    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .datatable-icon-left {
+                    font-size: 0.875rem;
+                    line-height: 1rem;
+                    padding: 0;
+                    display: block;
+                    height: 1rem;
+                }
+                .datatable-icon-skip {
+                    font-size: 0.875rem;
+                    line-height: 1rem;
+                    padding: 0;
+                    display: block;
+                    height: 1rem;
+                }
+                .datatable-icon-right {
+                    font-size: 0.875rem;
+                    line-height: 1rem;
+                    padding: 0;
+                    display: block;
+                    height: 1rem;
+                }
+                .datatable-icon-prev {
+                    font-size: 0.875rem;
+                    line-height: 1rem;
+                    padding: 0;
+                    display: block;
+                    height: 1rem;
+                }
+                li.disabled {
+                    a {
+                        color: $color;
+                    }
+                }
+                .pager {
+                    display: flex;
+                    font-size: 0;
+                    li {
+                        font-size: 0;
+                    }
+                }
+            }
+            .page-count {
+                display: inline-block;
+                flex: none;
+                color: $color-gray;
+                line-height: 14px;
+                font-size: 14px;
+                margin-top: -5px;
+                margin-right: 20px;
+                height: 14px;
+            }
+        }
+    }
+
+    .icon {
+        position: absolute;
+    }
+    .datatable-icon-down {
+        top: 0px;
+    }
+    .datatable-icon-up {
+        top: 18px;
+    }
+    .dragFromLeft {
+        .icon {
+            left: -13px;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20190118013600" author="ciprian">
+        <createTable tableName="gep">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nev" type="varchar(200)"></column>
+            <column name="marka_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geptipus_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telephely_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="suly" type="bigint"></column>
+            <column name="uzemido" type="bigint"></column>
+            <column name="gyartas_eve" type="bigint"></column>
+            <column name="ceg_tulajdona" type="date"></column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="marka_id"
+            baseTableName="gep"
+            constraintName="fk_head_marka_id"
+            referencedColumnNames="id"
+            referencedTableName="marka"/>
+        <addForeignKeyConstraint baseColumnNames="telephely_id"
+            baseTableName="gep"
+            constraintName="fk_head_telephely_id"
+            referencedColumnNames="id"
+            referencedTableName="telephely"/>
+        <addForeignKeyConstraint baseColumnNames="geptipus_id"
+            baseTableName="gep"
+            constraintName="fk_head_geptipus_id"
+            referencedColumnNames="id"
+            referencedTableName="gep_tipus"/>
+    </changeSet>
+</databaseChangeLog>

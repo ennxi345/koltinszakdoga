@@ -1,0 +1,94 @@
+<div class="panel-body">
+    <div class="row">
+        <div class="col-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>Telephely kereső</span>
+                </div>
+                <form class="panel-body" (ngSubmit)="onSearch()">
+                    <div class="row mt-2 ">
+                        <div class="col-6">
+                            <label class="mb-2 form-control-label" for="filterNev">Ügyfél
+                                név</label>
+                            <input type="text" [(ngModel)]="telephely.nev"
+                                   class="form-control"
+                                   id="filterNev" name="filterNev"
+                                   placeholder="Ügyfél név">
+                        </div>
+                        <div class="col-6">
+                            <label class="mb-2 form-control-label" for="filterNev">Település
+                                neve</label>
+                            <input type="text" [(ngModel)]="telephely.telepules"
+                                   class="form-control"
+                                   id="filterTelepules" name="filterTelepules"
+                                   placeholder="Település neve">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label class="form-control-label"> Megyék</label>
+                            <ng-select
+                                [items]="megyeList"
+                                bindLabel="megyeNev"
+                                name="megyeList"
+                                [multiple]="false"
+                                (change)="megyeChange()"
+                                (clear)="onMegyeClear()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="telephely.megye">
+                            </ng-select>
+                        </div>
+                        <div class="col-6">
+                            <label class="mb-2 form-control-label" for="filterNev">Cím</label>
+                            <input type="text" [(ngModel)]="telephely.cim"
+                                   class="form-control"
+                                   id="filterCim" name="filterCim"
+                                   placeholder="Cím">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <label class="form-control-label col-lg-12">Működés kezdete</label>
+                        <div class="col-xs-12 col-12 col-md-4 form-group">
+                            <input class="form-control"
+                                   [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                                   [ngModelOptions]="{standalone: true}"
+                                   (bsValueChange)="mukodesDatumChange($event)" placement="right"
+                                   #drp="bsDaterangepicker" bsDaterangepicker
+                                   [(ngModel)]="bsRangeValue">
+                        </div>
+                        <div class="col-xs-12 col-12 col-md-3 form-group">
+                            <button class="btn btn-success" (click)="drp.toggle()"
+                                    [attr.aria-expanded]="drp.isOpen">Date Range Picker
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 align-items-end">
+                        <div class="col-4">
+                            <button type="reset" class="btn" (click)="clearSearch()">
+                                <span>Keresési feltételek törlése</span>
+                            </button>
+                        </div>
+                        <div class="col-8 text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <span>Keresés</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <button type="button" class="btn btn-primary"
+                [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új
+            székhely
+        </button>
+    </div>
+</div>
+
+<jhi-table-builder #table [columns]="columns" [url]="'telephely'"
+                   [eventName]="'telephelyList-modification'"
+                   [queryParams]="queryParams"></jhi-table-builder>
+
