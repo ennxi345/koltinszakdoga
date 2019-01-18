@@ -83,6 +83,14 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         }
     }
 
+    onBeosztasClear() {
+        this.beosztasId = null;
+    }
+
+    onTelephelyClear() {
+        this.telephelyId = null;
+    }
+
     munkaviszonyDateChange(event) {
         event[0].setDate(event[0].getDate() + 1);
         event[1].setDate(event[1].getDate() + 1);
@@ -130,6 +138,9 @@ export class DolgozoComponent implements OnInit, OnDestroy {
         this.beosztasId = null;
         this.telephelyId = null;
         this.bsRangeValue = null;
+        this.munkaViszonyKezdeteK = null;
+        this.munkaViszonyKezdeteV = null;
+
         this.router.navigateByUrl('/dolgozo');
         if (this.table) {
             this.table.queryParams = null;

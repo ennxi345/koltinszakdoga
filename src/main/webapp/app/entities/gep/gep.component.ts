@@ -116,6 +116,18 @@ export class GepComponent implements OnInit, OnDestroy {
         }
     }
 
+    onMarkaClear() {
+        this.markaId = null;
+    }
+
+    onTelephelyClear() {
+        this.telephelyId = null;
+    }
+
+    onGepTipClear() {
+        this.geptipId = null;
+    }
+
     onSearch() {
         this.queryParams = [
             { searchFilter: 'nev.contains', fieldValue: this.telephely.nev },
@@ -147,6 +159,8 @@ export class GepComponent implements OnInit, OnDestroy {
         this.telephelyId = null;
         this.gep.nev = null;
         this.bsRangeValue = null;
+        this.mukodesKezdeteK = null;
+        this.mukodesKezdeteV = null;
         this.router.navigateByUrl('/gep');
         if (this.table) {
             this.table.queryParams = null;

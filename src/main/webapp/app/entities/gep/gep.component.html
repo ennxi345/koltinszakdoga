@@ -8,7 +8,8 @@
                 <form class="panel-body" (ngSubmit)="onSearch()">
                     <div class="row mt-2 ">
                         <div class="col-6">
-                            <label class="mb-2 form-control-label" for="filterNev">Munkagép neve</label>
+                            <label class="mb-2 form-control-label" for="filterNev">Munkagép
+                                neve</label>
                             <input type="text" [(ngModel)]="gep.nev"
                                    class="form-control"
                                    id="filterNev" name="filterNev"
@@ -21,7 +22,8 @@
                                 bindLabel="nev"
                                 name="telephelyList"
                                 [multiple]="false"
-                                (change) = "telephelyChange()"
+                                (change)="telephelyChange()"
+                                (clear)="onTelephelyClear()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="gep.telephely">
@@ -36,7 +38,8 @@
                                 bindLabel="nev"
                                 name="markaList"
                                 [multiple]="false"
-                                (change) = "markaChange()"
+                                (change)="markaChange()"
+                                (clear)="onMarkaClear()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="gep.marka">
@@ -49,7 +52,8 @@
                                 bindLabel="nev"
                                 name="gepTipusList"
                                 [multiple]="false"
-                                (change) = "gepTipChange()"
+                                (change)="gepTipChange()"
+                                (clear)="onGepTipClear()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="gep.gepTipus">
@@ -58,14 +62,19 @@
 
                     </div>
                     <div class="row mt-2">
-                            <label class="form-control-label col-lg-12">Cég tulajdonában</label>
-                            <div class="col-xs-12 col-12 col-md-4 form-group">
-                                <input class="form-control" placement="right" (bsValueChange)="mukodesDatumChange($event)" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
-                                       [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
-                            </div>
-                            <div class="col-xs-12 col-12 col-md-3 form-group">
-                                <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen">Date Range Picker</button>
-                            </div>
+                        <label class="form-control-label col-lg-12">Cég tulajdonában</label>
+                        <div class="col-xs-12 col-12 col-md-4 form-group">
+                            <input class="form-control" placement="right"
+                                   (bsValueChange)="mukodesDatumChange($event)"
+                                   [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                                   [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker"
+                                   bsDaterangepicker [(ngModel)]="bsRangeValue">
+                        </div>
+                        <div class="col-xs-12 col-12 col-md-3 form-group">
+                            <button class="btn btn-success" (click)="drp.toggle()"
+                                    [attr.aria-expanded]="drp.isOpen">Date Range Picker
+                            </button>
+                        </div>
                     </div>
 
                     <div class="row mt-4 align-items-end">
@@ -85,10 +94,12 @@
         </div>
     </div>
     <div class="row mt-4">
-        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'gep/edit'} }]">Új munkagép felvétele
+        <button type="button" class="btn btn-primary"
+                [routerLink]="['/', { outlets: { popup: 'gep/edit'} }]">Új munkagép felvétele
         </button>
     </div>
 </div>
 
-<jhi-table-builder #table [columns]="columns" [url]="'gep'" [eventName]="'gepList-modification'" [queryParams]="queryParams"></jhi-table-builder>
+<jhi-table-builder #table [columns]="columns" [url]="'gep'" [eventName]="'gepList-modification'"
+                   [queryParams]="queryParams"></jhi-table-builder>
 

@@ -31,6 +31,7 @@
                                 name="telephelyek"
                                 [multiple]="false"
                                 (change) = "telepulesChange()"
+                                (clear)="onTelephelyClear()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="dolgozo.telephely">
@@ -44,6 +45,7 @@
                                 name="beosztasok"
                                 [multiple]="false"
                                 (change) = "beosztasChange()"
+                                (clear)="onBeosztasClear()"
                                 [closeOnSelect]="true"
                                 [hideSelected]="true"
                                 [(ngModel)]="dolgozo.beosztas">

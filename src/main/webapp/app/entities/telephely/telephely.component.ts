@@ -72,6 +72,10 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         }
     }
 
+    onMegyeClear() {
+        this.megyeId = null;
+    }
+
     mukodesDatumChange(event: Date) {
         event[0].setDate(event[0].getDate() + 1);
         event[1].setDate(event[1].getDate() + 1);
@@ -119,6 +123,8 @@ export class TelephelyComponent implements OnInit, OnDestroy {
         this.telephely.telepules = null;
         this.telephely.cim = null;
         this.bsRangeValue = null;
+        this.mukodesKezdeteK = null;
+        this.mukodesKezdeteV = null;
         this.router.navigateByUrl('/telephely');
         if (this.table) {
             this.table.queryParams = null;
