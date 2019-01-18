@@ -15,6 +15,7 @@ import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap';
 import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
 import { DolgozoModalComponent, DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
 import { GepComponent } from 'app/entities/gep/gep.component';
+import { GepModalComponent, GepModalPopupComponent } from 'app/entities/gep/gep-modal.component';
 
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
@@ -40,7 +41,9 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         DolgozoComponent,
         DolgozoModalComponent,
         DolgozoModalPopupComponent,
-        GepComponent
+        GepComponent,
+        GepModalComponent,
+        GepModalPopupComponent
     ],
     entryComponents: [
         TelephelyModalComponent,
@@ -48,7 +51,9 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         DeleteDialogComponent,
         DeleteDialogPopupComponent,
         TelephelyModalPopupComponent,
-        DolgozoModalPopupComponent
+        DolgozoModalPopupComponent,
+        GepModalComponent,
+        GepModalPopupComponent
     ],
     providers: [EntityService, PopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <div class="modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Gép</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <label class="form-control-label col-lg-5" for="nev">Név</label>
+            <div class="form-group">
+                <input type="text" class="form-control" required id="nev" name="nev"
+                       [(ngModel)]="entity.nev"/>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label"> Márka</label>
+                <ng-select
+                    [items]="markaList"
+                    bindLabel="nev"
+                    name="markaList"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    [(ngModel)]="entity.marka">
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label"> Gép típusa</label>
+                <ng-select
+                    [items]="gepTipusList"
+                    bindLabel="nev"
+                    name="gepTipusList"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    [(ngModel)]="entity.gepTipus">
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label"> Telephely</label>
+                <ng-select
+                    [items]="telephelyList"
+                    bindLabel="nev"
+                    name="telephelyList"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    [(ngModel)]="entity.telephely">
+                </ng-select>
+            </div>
+            <label class="form-control-label col-lg-5" for="suly">Súly</label>
+            <div class="form-group">
+                <input type="number" class="form-control" required id="suly" name="suly"
+                       [(ngModel)]="entity.suly"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="uzemIdo">Üzemidő</label>
+            <div class="form-group">
+                <input type="number" class="form-control" required id="uzemIdo" name="uzemIdo"
+                       [(ngModel)]="entity.uzemIdo"/>
+            </div>
+            <label class="form-control-label col-lg-5" for="gyartasEve">Évjárat</label>
+            <div class="form-group">
+                <input type="number" class="form-control" required id="gyartasEve" name="gyartasEve"
+                       [(ngModel)]="entity.gyartasEve"/>
+            </div>
+            <label class="form-control-label col-lg-5">Használat kezdete</label>
+            <div class="col-xs-12 col-12 col-md-4 form-group">
+                <input type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       [(ngModel)]="entity.cegTulajdona"
+                       [ngModelOptions]="{standalone: true}"
+                       [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                       bsDatepicker>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="submit" [disabled]="editForm.form.invalid"
+                    class="btn btn-primary">
+                <span>Save</span>
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cancel()">
+                <span>Cancel</span>
+            </button>
+        </div>
+    </div>
+</form>

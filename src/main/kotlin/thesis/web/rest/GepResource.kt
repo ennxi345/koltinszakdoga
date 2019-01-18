@@ -14,6 +14,7 @@ import thesis.web.rest.util.PaginationUtil
 import java.net.URI
 
 @RestController
+@RequestMapping(Constant.API_BASE_URL)
 class GepResource(val service: EntityService<GepDTO, GepCriteria, Gep>) {
 
     companion object {

@@ -10,7 +10,7 @@ export class Gep {
         public gepTipus?: GepTipus,
         public telephely?: Telephely,
         public suly?: number,
-        public gyartas_eve?: number,
+        public gyartasEve?: number,
         public uzemIdo?: number,
         public cegTulajdona?: Date
     ) {}

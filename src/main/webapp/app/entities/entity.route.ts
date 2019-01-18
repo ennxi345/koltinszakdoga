@@ -6,6 +6,7 @@ import { TelephelyModalPopupComponent } from 'app/entities/telephely/telephely-m
 import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
 import { DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
 import { GepComponent } from 'app/entities/gep/gep.component';
+import { GepModalPopupComponent } from 'app/entities/gep/gep-modal.component';
 
 export const entityRoute: Routes = [
     {
@@ -36,12 +37,22 @@ export const entityRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'dolgozo/edit/:id',
+        component: DolgozoModalPopupComponent,
+        outlet: 'popup'
+    },
+    {
         path: 'gep',
         component: GepComponent
     },
     {
-        path: 'dolgozo/edit/:id',
-        component: DolgozoModalPopupComponent,
+        path: 'gep/edit',
+        component: GepModalPopupComponent,
+        outlet: 'popup'
+    },
+    {
+        path: 'gep/edit/:id',
+        component: GepModalPopupComponent,
         outlet: 'popup'
     },
     {
