@@ -8,11 +8,24 @@
                 <form class="panel-body" (ngSubmit)="onSearch()">
                     <div class="row mt-2 ">
                         <div class="col-6">
-                            <label class="mb-2 form-control-label" for="filterNev">Ügyfél név</label>
+                            <label class="mb-2 form-control-label" for="filterNev">Munkagép neve</label>
                             <input type="text" [(ngModel)]="gep.nev"
                                    class="form-control"
                                    id="filterNev" name="filterNev"
-                                   placeholder="Ügyfél név">
+                                   placeholder="Munkagép neve">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-control-label"> Telephely</label>
+                            <ng-select
+                                [items]="telephelyList"
+                                bindLabel="nev"
+                                name="telephelyList"
+                                [multiple]="false"
+                                (change) = "telephelyChange()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="gep.telephely">
+                            </ng-select>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -45,19 +58,14 @@
 
                     </div>
                     <div class="row mt-2">
-                        <div class="col-6">
-                            <label class="form-control-label"> Telephely</label>
-                            <ng-select
-                                [items]="telephelyList"
-                                bindLabel="nev"
-                                name="telephelyList"
-                                [multiple]="false"
-                                (change) = "telephelyChange()"
-                                [closeOnSelect]="true"
-                                [hideSelected]="true"
-                                [(ngModel)]="gep.telephely">
-                            </ng-select>
-                        </div>
+                            <label class="form-control-label col-lg-12">Cég tulajdonában</label>
+                            <div class="col-xs-12 col-12 col-md-4 form-group">
+                                <input class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                                       [ngModelOptions]="{standalone: true}" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
+                            </div>
+                            <div class="col-xs-12 col-12 col-md-3 form-group">
+                                <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen">Date Range Picker</button>
+                            </div>
                     </div>
 
                     <div class="row mt-4 align-items-end">
@@ -77,8 +85,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'gep/edit'} }]">Új
-            gép
+        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'gep/edit'} }]">Új munkagép felvétele
         </button>
     </div>
 </div>
