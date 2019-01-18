@@ -14,6 +14,7 @@ import { TableBuilderComponent } from 'app/entities/abstract/component/table-bui
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap';
 import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
 import { DolgozoModalComponent, DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
+import { GepComponent } from 'app/entities/gep/gep.component';
 
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
@@ -38,7 +39,8 @@ const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
         TableBuilderComponent,
         DolgozoComponent,
         DolgozoModalComponent,
-        DolgozoModalPopupComponent
+        DolgozoModalPopupComponent,
+        GepComponent
     ],
     entryComponents: [
         TelephelyModalComponent,

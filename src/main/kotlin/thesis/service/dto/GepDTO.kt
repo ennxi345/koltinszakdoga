@@ -11,7 +11,7 @@ data class GepDTO(var id: Long?,
                   var gepTipus: GepTipus?,
                   var telephely: Telephely?,
                   var suly: Int?,
-                  var gyartas_eve: Int?,
+                  var gyartasEve: Int?,
                   var uzemIdo: Int?,
                   var cegTulajdona: LocalDate?) {
     constructor() : this(null,null,null,null,null,null,null,null,null)

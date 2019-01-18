@@ -5,6 +5,7 @@ import { DeleteDialogPopupComponent } from 'app/entities/abstract/component/dele
 import { TelephelyModalPopupComponent } from 'app/entities/telephely/telephely-modal.component';
 import { DolgozoComponent } from 'app/entities/dolgozo/dolgozo.component';
 import { DolgozoModalPopupComponent } from 'app/entities/dolgozo/dolgozo-modal.component';
+import { GepComponent } from 'app/entities/gep/gep.component';
 
 export const entityRoute: Routes = [
     {
@@ -33,6 +34,10 @@ export const entityRoute: Routes = [
         path: 'dolgozo/edit',
         component: DolgozoModalPopupComponent,
         outlet: 'popup'
+    },
+    {
+        path: 'gep',
+        component: GepComponent
     },
     {
         path: 'dolgozo/edit/:id',

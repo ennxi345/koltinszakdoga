@@ -23,7 +23,7 @@ data class Gep(@Id
                @Column(name = "suly")
                var suly: Int?,
                @Column(name = "gyartas_eve")
-               var gyartas_eve: Int?,
+               var gyartasEve: Int?,
                @Column(name = "uzemido")
                var uzemIdo: Int?,
                @Column(name = "ceg_tulajdona")

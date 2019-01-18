@@ -1,0 +1,87 @@
+<div class="panel-body">
+    <div class="row">
+        <div class="col-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>Gép kereső</span>
+                </div>
+                <form class="panel-body" (ngSubmit)="onSearch()">
+                    <div class="row mt-2 ">
+                        <div class="col-6">
+                            <label class="mb-2 form-control-label" for="filterNev">Ügyfél név</label>
+                            <input type="text" [(ngModel)]="gep.nev"
+                                   class="form-control"
+                                   id="filterNev" name="filterNev"
+                                   placeholder="Ügyfél név">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label class="form-control-label"> Márka</label>
+                            <ng-select
+                                [items]="markaList"
+                                bindLabel="nev"
+                                name="markaList"
+                                [multiple]="false"
+                                (change) = "markaChange()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="gep.marka">
+                            </ng-select>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-control-label"> Gép típusa</label>
+                            <ng-select
+                                [items]="gepTipusList"
+                                bindLabel="nev"
+                                name="gepTipusList"
+                                [multiple]="false"
+                                (change) = "gepTipChange()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="gep.gepTipus">
+                            </ng-select>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label class="form-control-label"> Telephely</label>
+                            <ng-select
+                                [items]="telephelyList"
+                                bindLabel="nev"
+                                name="telephelyList"
+                                [multiple]="false"
+                                (change) = "telephelyChange()"
+                                [closeOnSelect]="true"
+                                [hideSelected]="true"
+                                [(ngModel)]="gep.telephely">
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 align-items-end">
+                        <div class="col-4">
+                            <button type="reset" class="btn" (click)="clearSearch()">
+                                <span>Keresési feltételek törlése</span>
+                            </button>
+                        </div>
+                        <div class="col-8 text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <span>Keresés</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <button type="button" class="btn btn-primary" [routerLink]="['/', { outlets: { popup: 'telephely/edit'} }]">Új
+            székhely
+        </button>
+    </div>
+</div>
+
+<jhi-table-builder #table [columns]="columns" [url]="'gep'" [eventName]="'gepList-modification'" [queryParams]="queryParams"></jhi-table-builder>
+
