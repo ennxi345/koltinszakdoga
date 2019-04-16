@@ -45,7 +45,6 @@ export class TelephelyComponent implements OnInit, OnDestroy {
 
         this.columns = [
             { prop: 'nev', name: 'Név', sort: 'nev' },
-            { prop: 'megye.megyeNev', name: 'Megye', sort: 'megye.megyeNev' },
             { prop: 'telepules', name: 'Település', sort: 'telepules' },
             { prop: 'cim', name: 'Cím' },
             { prop: 'mukodesKezdete', name: 'Működés kezdete' }
@@ -53,7 +52,7 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties as Megye[]));
+        this.entityService.getAll('api/megye').subscribe(counties => (this.megyeList = counties._embedded.megye as Megye[]));
     }
 
     public trackByFn(index, item) {
@@ -94,23 +93,15 @@ export class TelephelyComponent implements OnInit, OnDestroy {
     }
 
     onSearch() {
-        this.queryParams = [
-            { searchFilter: 'nev.contains', fieldValue: this.telephely.nev },
-            {
-                searchFilter: 'telepules.contains',
-                fieldValue: this.telephely.telepules
-            },
-            { searchFilter: 'cim.contains', fieldValue: this.telephely.cim },
-            { searchFilter: 'megyeId.equals', fieldValue: this.megyeId },
-            {
-                searchFilter: 'mukodesKezdeteK.greaterOrEqualThan',
-                fieldValue: this.mukodesKezdeteK
-            },
-            {
-                searchFilter: 'mukodesKezdeteV.lessOrEqualThan',
-                fieldValue: this.mukodesKezdeteV
-            }
-        ];
+        this.queryParams = {
+            'nev.contains': this.telephely.nev,
+            'telepules.contains': this.telephely.telepules,
+            'cim.contains': this.telephely.cim,
+            'megyeId.equals': this.megyeId,
+            'mukodesKezdeteK.greaterOrEqualThan': this.mukodesKezdeteK,
+            'mukodesKezdeteV.lessOrEqualThan': this.mukodesKezdeteV
+        };
+
         if (this.table) {
             this.table.queryParams = this.queryParams;
             this.table.loadAll();

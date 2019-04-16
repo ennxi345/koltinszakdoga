@@ -2,7 +2,6 @@ import { Component, Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { EntityService } from '../../../../entity.service';
-import { Telephely } from 'app/entities/telephely/telephely.model';
 
 @Injectable()
 export class PopupComponent {

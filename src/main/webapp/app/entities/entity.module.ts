@@ -19,15 +19,13 @@ import { GepModalComponent, GepModalPopupComponent } from 'app/entities/gep/gep-
 const ENTITY_STATES = [...entityRoute, ...entityPopupRoute];
 
 @NgModule({
-    // prettier-ignore
     imports: [
-        RouterModule.forRoot(ENTITY_STATES, {useHash: true}),
+        RouterModule.forRoot(ENTITY_STATES, { useHash: true }),
         KotlinsterSharedModule,
         NgSelectModule,
         NgxDatatableModule,
         DatepickerModule,
         BsDatepickerModule.forRoot()
-
     ],
     declarations: [
         TelephelyComponent,

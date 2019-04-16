@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EntityService } from '../../../../entity.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpResponse } from '@angular/common/http';
+import { PageResponse } from 'app/entities/abstract/component/page-response';
 
 @Component({
     selector: 'jhi-table-builder',
@@ -59,14 +60,14 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         this.columns.push({ cellTemplate: this.buttonTemplates });
         this.entityService
             .query('api/' + this.url, {
-                page: this.pageNumber - 1,
+                page: this.pageNumber,
                 size: this.itemsPerPage,
-                query: this.queryParams
+                filter: this.queryParams
             })
             .subscribe(
-                (res: HttpResponse<any[]>) => {
-                    this.items = res.body;
-                    this.totalItems = Number(res.headers.get('X-Total-Count'));
+                (res: PageResponse<any>) => {
+                    this.items = res._embedded[Object.keys(res._embedded)[0]] as any[];
+                    this.totalItems = res.page.totalElements;
                 },
                 () => {
                     this.toasterService.error('Nem sikerült betölteni a táblázat adatait');

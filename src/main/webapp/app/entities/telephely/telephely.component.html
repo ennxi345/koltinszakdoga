@@ -29,7 +29,8 @@
                             <label class="form-control-label"> Megyék</label>
                             <ng-select
                                 [items]="megyeList"
-                                bindLabel="megyeNev"
+                                bindLabel="megyenev"
+                                bindValue="id"
                                 name="megyeList"
                                 [multiple]="false"
                                 (change)="megyeChange()"

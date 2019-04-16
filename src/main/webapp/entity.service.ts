@@ -3,9 +3,9 @@ import { Observable } from 'rxjs/Rx';
 import { JhiAlertService } from 'ng-jhipster';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Page } from 'app/models/page.model';
-import { RequestOptions } from 'http';
 import { createRequestOption } from 'app/shared';
+import { PageResponse } from 'app/entities/abstract/component/page-response';
+import { PageRequest } from 'app/entities/abstract/component/page-request';
 
 @Injectable()
 export class EntityService {
@@ -30,12 +30,12 @@ export class EntityService {
     }
 
     getAll(url: string): Observable<any> {
-        return this.http.get(`${url}/all`);
+        return this.http.get(`${url}`);
     }
 
-    query(url: string, filter: any): Observable<HttpResponse<any>> {
-        const options = createRequestOption(filter);
-        return this.http.get(`${url}/query`, { params: options, observe: 'response' });
+    query(url: string, filter: PageRequest): Observable<PageResponse<any>> {
+        const params = createRequestOption(filter);
+        return this.http.get<PageResponse<any>>(`${url}/query`, { params });
     }
 
     delete(id: number, url: string) {
